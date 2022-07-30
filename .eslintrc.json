@@ -1,24 +1,26 @@
 {
-  "parser": "@typescript-eslint/parser",
+  "parser": "@typescript-eslint/parser", //makes typescript syntax readable for eslint
   "extends": [
-    "eslint:recommended",
-    "plugin:react/recommended",
-    "plugin:react-hooks/recommended",
-    "plugin:jsx-a11y/recommended",
-    "plugin:@typescript-eslint/recommended",
-    "plugin:import/recommended",
-    "plugin:import/typescript",
-    "prettier"
+    "eslint:recommended", //enforces rules from eslint team
+    "plugin:react/recommended", //enforces react rules (no-direct-mutation-state rule etc.)
+    "plugin:react-hooks/recommended", //enforces rules of hooks from react (exhaustive-deps rule etc.)
+    "plugin:jsx-a11y/recommended", //evaluation of the JSX to spot accessibility issues
+    "plugin:@typescript-eslint/recommended", // enforces typescript rules
+    "plugin:import/recommended", //enforces correct file paths and import names (no-unresolved rule etc.)
+    "plugin:import/typescript", //enforces correct typescript file paths and import names
+    "prettier" //turns off rules that will be enforced by prettier to avoid duplication
   ],
   "env": {
     "es6": true,
     "browser": true,
     "node": true
   },
+  //settings that will be used by all the plugins if not specified
   "settings": {
     "react": {
-      "version": "detect"
+      "version": "detect" // automatically picks the react version we have installed
     },
+    //need ts import resolver for plugin:import/typescript rules to work
     "import/parsers": { "@typescript-eslint/parser": [".ts", ".tsx"] },
     "import/resolver": {
       "typescript": {
