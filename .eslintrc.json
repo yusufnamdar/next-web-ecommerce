@@ -29,6 +29,15 @@
     }
   },
   "rules": {
-    "react/react-in-jsx-scope": "off"
+    "react/prop-types": "off",
+    "react/display-name": "off",
+    "no-useless-escape": "off",
+    "react/no-unescaped-entities": "off",
+    "react/react-in-jsx-scope": "off",
+    "@typescript-eslint/explicit-function-return-type": "off",
+    "@typescript-eslint/explicit-member-accessibility": "off",
+    "@typescript-eslint/indent": "off",
+    "@typescript-eslint/no-explicit-any": "off",
+    "@typescript-eslint/no-var-requires": "off"
   }
 }
