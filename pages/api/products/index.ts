@@ -1,9 +1,9 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { connect } from '../../utils/mongodb'
-import { Product } from '../../models/productModel'
-import { getFilters } from '../../utils'
+import { connect } from '../../../utils/mongodb'
+import { Product } from '../../../models/productModel'
+import { getFilters } from '../../../utils'
 
-type Result = IProduct
+type Result = IProduct[]
 
 const handler = async (
   req: NextApiRequest,
