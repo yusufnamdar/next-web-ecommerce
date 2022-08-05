@@ -1,9 +1,0 @@
-{
-  "presets": ["next/babel"],
-  "plugins": [
-    [
-      "styled-components", //this plugin avoids classname mismatches due to different class generation on the client and on the server.
-      { "ssr": true, "displayName": true, "preprocess": false }
-    ]
-  ]
-}

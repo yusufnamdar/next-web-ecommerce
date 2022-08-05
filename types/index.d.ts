@@ -37,6 +37,6 @@ interface ISku {
 interface IResponse<T> {
   success: boolean
   message: string
-  result?: T[] | T
+  result?: T
   filters?: Record<string, unknown>
 }
