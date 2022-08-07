@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { connect } from '../../../utils/mongodb'
-import { Product } from '../../../models/productModel'
-import { getFilters } from '../../../utils'
+import { connect } from 'utils/mongodb'
+import { Product } from 'models/productModel'
+import { getFilters } from 'utils'
 
 type Result = IProduct[]
 
@@ -14,7 +14,7 @@ const handler = async (
       await connect()
       console.log('start', req.query)
 
-      const query = Product.buildQuery(req.query) // This is a static query builder function
+      const query = Product.buildQuery(req.query) // This is the Product's static query builder function
       const result = await query.exec() // Execute the built query
       const filters = getFilters(result) // Get dynamic filters object
 
