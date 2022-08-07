@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
-    "target": "es5",
+    "target": "es6",
+    "baseUrl": ".", // this makes absolute imports ("utils/mongodb", instead of "../../utils/mongodb") start at the same level as the tsconfig.json file
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
