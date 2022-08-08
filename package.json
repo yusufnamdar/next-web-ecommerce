@@ -15,7 +15,6 @@
   "lint-staged": {
     "*.@(ts|tsx|js)": [
       "yarn lint --fix",
-      "yarn type-check",
       "yarn format"
     ]
   },

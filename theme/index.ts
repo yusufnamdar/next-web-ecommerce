@@ -6,11 +6,12 @@ export const sharedTheme = {
     orange: '#ff7849',
     green: '#13ce66',
     yellow: '#ffc82c',
-    'gray-dark': '#273444',
     gray: '#8492a6',
-    'gray-light': '#d3dce6',
+    white: '#fff',
+    teal: { 100: '#075985' },
   },
-  space: { small: '12px', medium: '16px', large: '24px' },
+  space: [0, 4, 8, 12], //It's recommended to set 0 as the first value in the array.
+  fonts: { ibm: "'IBM Plex Sans', sans-serif" },
   fontWeights: {
     light: '300',
     regular: '400',
@@ -18,30 +19,18 @@ export const sharedTheme = {
     bold: '700',
     'extra-bold': '800',
   },
-  fontSizes: {
-    10: '10px',
-    12: '12px',
-    13: '13px',
-    14: '14px',
-    15: '15px',
-    16: '16px',
-    18: '18px',
-    20: '20px',
-    22: '22px',
-    24: '24px',
-    26: '26px',
-    28: '28px',
-    30: '30px',
-    32: '32px',
-    36: '36px',
-    40: '40px',
-    56: '56px',
-    64: '64px',
-  },
   borderRadius: {
     small: '2px',
+    regular: '4px',
     medium: '6px',
     large: '8px',
+  },
+  breakpoints: {
+    xs: '576px',
+    sm: '768px',
+    md: '1024px',
+    lg: '1280px',
+    xl: '1440px',
   },
 }
 
@@ -64,3 +53,4 @@ export const darkTheme = {
     panel: '#115e59', //teal-800
   },
 }
+//background-image: linear-gradient(to top, #30cfd0 0%, #330867 100%);

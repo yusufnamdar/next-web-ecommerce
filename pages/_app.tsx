@@ -1,7 +1,8 @@
 import { GlobalStyle } from 'components/global'
-import type { AppProps } from 'next/app'
-import Head from 'next/head'
 import { ThemeProvider } from 'theme/provider'
+import type { AppProps } from 'next/app'
+import Layout from 'components/Layout'
+import Head from 'next/head'
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
@@ -11,7 +12,9 @@ function MyApp({ Component, pageProps }: AppProps) {
       </Head>
       <ThemeProvider>
         <GlobalStyle />
-        <Component {...pageProps} />
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
       </ThemeProvider>
     </>
   )

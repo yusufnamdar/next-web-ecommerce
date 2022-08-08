@@ -8,7 +8,7 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   body {
-    font-family: 'IBM Plex Sans', sans-serif;
+    font-family: ${theme('fonts.ibm')};
     text-rendering: optimizeLegibility;
     color: ${theme('colors.text')};
     background-color:${theme('colors.body')};
