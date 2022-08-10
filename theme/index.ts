@@ -8,10 +8,14 @@ export const sharedTheme = {
     yellow: '#ffc82c',
     gray: '#8492a6',
     white: '#fff',
-    teal: { 100: '#075985' },
+    slate: { 100: '#f1f5f9' },
+    cyan: { 900: '#0B2833' },
   },
-  space: [0, 4, 8, 12], //It's recommended to set 0 as the first value in the array.
-  fonts: { ibm: "'IBM Plex Sans', sans-serif" },
+  space: [0, 4, 8, 12, 24], //It's recommended to set 0 as the first value in the array.
+  fonts: {
+    ibm: "'IBM Plex Sans', sans-serif",
+    bahaianita: "'Bahianita', cursive",
+  },
   fontWeights: {
     light: '300',
     regular: '400',
@@ -19,7 +23,7 @@ export const sharedTheme = {
     bold: '700',
     'extra-bold': '800',
   },
-  borderRadius: {
+  radii: {
     small: '2px',
     regular: '4px',
     medium: '6px',
@@ -49,7 +53,7 @@ export const darkTheme = {
   colors: {
     ...sharedTheme.colors,
     body: '#0f172a', //slate-900
-    text: '#fff', //white
+    text: '#f1f5f9', //slate-100
     panel: '#115e59', //teal-800
   },
 }

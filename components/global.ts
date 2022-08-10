@@ -37,4 +37,8 @@ export const GlobalStyle = createGlobalStyle`
   select {
     outline: none;
   }
+
+  .cursor {
+    cursor: pointer;
+  }
 `
