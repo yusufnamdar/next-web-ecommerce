@@ -2,5 +2,9 @@ import styled from 'styled-components'
 
 export const LayoutStyled = styled.div`
   width: 100%;
-  max-height: 100vh;
+  min-height: 100vh;
+  display: flex;
+`
+export const ContainerStyled = styled.div`
+  flex: 1 1 auto;
 `

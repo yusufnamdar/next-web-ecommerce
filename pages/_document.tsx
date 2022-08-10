@@ -48,7 +48,11 @@ class MyDocument extends Document {
             crossOrigin="true"
           />
           <link
-            href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Bahianita&family=IBM+Plex+Sans:wght@400;600;700&display=swap"
+            rel="stylesheet"
+          />
+          <link
+            href="https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined"
             rel="stylesheet"
           />
         </Head>
