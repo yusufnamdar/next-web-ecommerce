@@ -27,3 +27,5 @@ export const getFilters = (products: IProduct[] | IProduct): IRecord => {
 
   return filters
 }
+
+export const noop = () => {}

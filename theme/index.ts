@@ -1,15 +1,14 @@
 export const sharedTheme = {
   colors: {
-    blue: '#1fb6ff',
-    purple: '#7e5bef',
-    pink: '#ff49db',
     orange: '#ff7849',
     green: '#13ce66',
     yellow: '#ffc82c',
-    gray: '#8492a6',
     white: '#fff',
-    slate: { 100: '#f1f5f9' },
-    cyan: { 900: '#0B2833' },
+    primary: { 300: '#fcd34d', 400: '#fbbf24' },
+    danger: { 300: '#fca5a5', 400: '#f87171' },
+    gray: { 300: '#d1d5db', 400: '#6b7280' },
+    slate: { 100: '#f1f5f9', 300: '#cbd5e1' },
+    cyan: { 900: '#0B2833', 800: '#155e75' },
   },
   space: [0, 4, 8, 12, 24], //It's recommended to set 0 as the first value in the array.
   fonts: {

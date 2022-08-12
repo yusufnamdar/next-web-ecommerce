@@ -1,14 +1,19 @@
 import Box from 'components/Box'
 import Text from 'components/Text'
-import SearchInput from './SearchInput'
+import { useRef } from 'react'
+import Searchbar from './Searchbar'
 import { NavStyled } from './styled'
+import Toolbar from './Toolbar'
 
 const Navbar = () => {
+  const navRef = useRef<any>()
+
   return (
-    <NavStyled>
+    <NavStyled ref={navRef}>
       <Box
+        height={64}
         display="flex"
-        // justifyContent="space-between"
+        justifyContent="space-between"
         alignItems="center"
         mx="auto"
         maxWidth={1200}
@@ -23,7 +28,8 @@ const Navbar = () => {
         >
           NAMSTORE
         </Text>
-        <SearchInput />
+        <Searchbar />
+        <Toolbar />
       </Box>
     </NavStyled>
   )
