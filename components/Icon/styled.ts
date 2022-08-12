@@ -10,7 +10,6 @@ export const IconStyled = styled.span<IconStyledProps>`
   display: inline-block;
   user-select: none;
   overflow: hidden;
-  width: ${prop('fontSize')}px;
   cursor: ${prop('cursor', 'inherit')};
   ${typography}
   ${color}
