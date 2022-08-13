@@ -1,14 +1,18 @@
 import { Icon } from 'components/Icon'
-import React from 'react'
-import { MenuStyled, ArrowStyled } from './styled'
+import { FC, ReactNode } from 'react'
+import { MenuStyledProps, MenuStyled } from './styled'
 
-const Menu = () => {
+interface MenuProps extends MenuStyledProps {
+  children?: ReactNode
+}
+
+const Menu: FC<MenuProps> = ({ children, ...props }) => {
   return (
-    <MenuStyled size={200} position="absolute" top="100%" right={0}>
-      Menu
-      <ArrowStyled>
-        <Icon name="play_arrow" color="white" size={25} />
-      </ArrowStyled>
+    <MenuStyled className="toolbar-menu" {...props}>
+      {children}
+      <span>
+        <Icon name="play_arrow" color="white" size={18} />
+      </span>
     </MenuStyled>
   )
 }

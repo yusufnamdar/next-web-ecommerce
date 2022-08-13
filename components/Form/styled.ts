@@ -52,7 +52,7 @@ export const InputStyled = styled.input<InputStyledProps>`
   }
 `
 export const IconContainerStyled = styled.span<{
-  variant?: string
+  variant?: 'primary' | 'danger'
   isIconBg?: boolean
   disabled?: boolean
 }>`
