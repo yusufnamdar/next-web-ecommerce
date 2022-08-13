@@ -10,4 +10,4 @@ const Text: FC<TextProps> = (props) => {
   return <TextStyled {...props} />
 }
 
-export default Text
+export { Text }

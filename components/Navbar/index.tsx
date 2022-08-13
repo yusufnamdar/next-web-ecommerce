@@ -1,8 +1,8 @@
-import Box from 'components/Box'
-import Text from 'components/Text'
+import { Box } from 'components/Box'
+import { Text } from 'components/Text'
 import { useRef } from 'react'
-import Searchbar from './Searchbar'
 import { NavStyled } from './styled'
+import Searchbar from './Searchbar'
 import Toolbar from './Toolbar'
 
 const Navbar = () => {

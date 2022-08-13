@@ -1,8 +1,8 @@
-import Box from 'components/Box'
-import Icon from 'components/Icon'
-import Text from 'components/Text'
-import Menu from './Menu'
+import { Box } from 'components/Box'
+import { Icon } from 'components/Icon'
+import { Text } from 'components/Text'
 import { ToolContainerStyled } from './styled'
+import Menu from './Menu'
 
 const Toolbar = () => {
   return (
@@ -12,6 +12,7 @@ const Toolbar = () => {
         <Text ml={1} color="white" fontSize={13} fontWeight="semi-bold">
           Login
         </Text>
+        <Menu />
       </ToolContainerStyled>
       <ToolContainerStyled onHoverIconColor="#fb7185" px={8}>
         <Icon name="favorite" color="white" />
