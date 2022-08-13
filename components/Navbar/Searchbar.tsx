@@ -1,6 +1,6 @@
-import Box from 'components/Box'
-import Input from 'components/Form/Input'
-import Icon from 'components/Icon'
+import { Box } from 'components/Box'
+import { Input } from 'components/Form/Input'
+import { Icon } from 'components/Icon'
 import { FC } from 'react'
 
 type SearchbarProps = { onFocus?(): void }

@@ -1,4 +1,4 @@
- import { FC, ReactNode } from 'react'
+import { FC, ReactNode } from 'react'
 import { BoxStyled, BoxStyledProps } from './styled'
 
 interface BoxProps extends BoxStyledProps {
@@ -13,4 +13,4 @@ const Box: FC<BoxProps> = ({ hidden = false, ...props }) => {
   return <BoxStyled {...props} />
 }
 
-export default Box
+export { Box }
