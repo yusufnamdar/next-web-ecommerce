@@ -9,7 +9,7 @@ const Searchbar: FC<SearchbarProps> = ({ onFocus }) => {
   return (
     <Box width={{ default: 1, sm: 1 / 2 }} mx={16}>
       <Input
-        type="text"
+        type="search"
         icon={<Icon name="search" size={30} />}
         placeholder="Type the gender, category or both, men+t-shirt etc..."
         onFocus={onFocus}

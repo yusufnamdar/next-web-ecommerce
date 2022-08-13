@@ -1,15 +1,12 @@
 import { Box } from 'components/Box'
 import { Text } from 'components/Text'
-import { useRef } from 'react'
 import { NavStyled } from './styled'
 import Searchbar from './Searchbar'
 import Toolbar from './Toolbar'
 
 const Navbar = () => {
-  const navRef = useRef<any>()
-
   return (
-    <NavStyled ref={navRef}>
+    <NavStyled>
       <Box
         height={64}
         display="flex"
