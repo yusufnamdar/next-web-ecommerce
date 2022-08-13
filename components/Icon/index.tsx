@@ -30,4 +30,4 @@ const Icon: FC<IconProps> = ({
   )
 }
 
-export default Icon
+export { Icon }
