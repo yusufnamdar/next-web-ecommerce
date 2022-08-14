@@ -8,7 +8,7 @@ export const sharedTheme = {
     danger: { 300: '#fca5a5', 400: '#f87171' },
     gray: { 200: '#e5e7eb', 300: '#d1d5db', 400: '#6b7280' },
     slate: { 100: '#f1f5f9', 300: '#cbd5e1' },
-    cyan: { 900: '#0B2833', 800: '#155e75' },
+    cyan: { 1000: '#0B2833', 900: '#164e63' },
   },
   space: [0, 4, 8, 12, 24], //It's recommended to set 0 as the first value in the array.
   fonts: {
