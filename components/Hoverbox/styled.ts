@@ -73,7 +73,7 @@ export const HoverboxStyled = styled.div<HoverboxStyledProps>`
   display: none;
   position: absolute;
   z-index: 1;
-  box-shadow: 0 4px 16px 0 ${theme('colors.gray.300')};
+  box-shadow: 0 0 20px 0 ${theme('colors.gray.400')};
   background-color: ${theme('colors.panel')};
   border-radius: ${theme('radii.large')};
   ${switchProp('variant', variants)}

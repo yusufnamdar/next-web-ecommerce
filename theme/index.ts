@@ -4,6 +4,7 @@ export const sharedTheme = {
     green: '#13ce66',
     yellow: '#ffc82c',
     white: '#fff',
+    emerald: { 300: '#6ee7b7' },
     primary: { 50: '#fffbeb', 300: '#fcd34d', 400: '#fbbf24' },
     danger: { 300: '#fca5a5', 400: '#f87171' },
     gray: { 200: '#e5e7eb', 300: '#d1d5db', 400: '#6b7280' },

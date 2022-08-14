@@ -24,12 +24,12 @@ const Hoverbox: FC<HoverboxProps> = ({
   return (
     <HoverboxContainerStyled onHoverColor={onHoverColor}>
       {children}
-      {content && (
+      {!!content && (
         <HoverboxStyled className="hover-box" variant={variant} {...props}>
           {content}
           {variant?.startsWith('arrow') && (
             <span>
-              <Icon name="play_arrow" color="white" size={18} />
+              <Icon name="play_arrow" color="panel" size={18} />
             </span>
           )}
         </HoverboxStyled>
