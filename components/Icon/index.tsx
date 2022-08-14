@@ -11,7 +11,7 @@ interface IconProps extends IconStyledProps, HTMLAttributes<HTMLSpanElement> {
 const Icon: FC<IconProps> = ({
   name,
   size = 24,
-  color = 'black',
+  color,
   outlined,
   cursor,
   ...props

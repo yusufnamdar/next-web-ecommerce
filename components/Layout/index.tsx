@@ -7,7 +7,9 @@ const Layout: FC<PropsWithChildren> = ({ children }) => {
   return (
     <LayoutStyled>
       <ContainerStyled>
-        <Navbar />
+        <header>
+          <Navbar />
+        </header>
         {children}
         <Footer />
       </ContainerStyled>
