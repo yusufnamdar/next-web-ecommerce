@@ -16,13 +16,13 @@ interface HoverboxProps
 
 const Hoverbox: FC<HoverboxProps> = ({
   children,
-  onHoverColor,
+  colorOnHover,
   content,
   variant = 'arrowBottomCenter',
   ...props
 }) => {
   return (
-    <HoverboxContainerStyled onHoverColor={onHoverColor}>
+    <HoverboxContainerStyled colorOnHover={colorOnHover}>
       {children}
       {!!content && (
         <HoverboxStyled className="hover-box" variant={variant} {...props}>

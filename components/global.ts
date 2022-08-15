@@ -41,4 +41,17 @@ export const GlobalStyle = createGlobalStyle`
   .cursor {
     cursor: pointer;
   }
+
+  .no-scrollbar{
+    -ms-overflow-style: none;  
+    scrollbar-width: none; 
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
+  }
+
+  .primary-color{
+    color:${theme('colors.primary.300')};
+  }
 `

@@ -3,7 +3,7 @@ import { layout, LayoutProps } from 'styled-system'
 import { prop, theme, switchProp } from 'styled-tools'
 
 export type HoverboxContainerStyledProps = {
-  onHoverColor?: string
+  colorOnHover?: string
 }
 
 export const HoverboxContainerStyled = styled.div<HoverboxContainerStyledProps>`
@@ -18,7 +18,7 @@ export const HoverboxContainerStyled = styled.div<HoverboxContainerStyledProps>`
       display: block;
     }
     & > * {
-      color: ${prop('onHoverColor')};
+      color: ${prop('colorOnHover')};
     }
   }
 `
