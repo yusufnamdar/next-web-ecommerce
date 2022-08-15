@@ -1,3 +1,5 @@
+//I prefixed the names with "I" to indicate that the type or the interface is in the "index.d.ts" file.
+
 type IRecord = Record<string, any>
 
 interface IProduct {

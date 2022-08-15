@@ -1,18 +1,14 @@
 import Footer from 'components/Footer'
-import Navbar from 'components/Navbar'
+import Header from 'components/Header'
 import { FC, PropsWithChildren } from 'react'
 import { ContainerStyled, LayoutStyled } from './styled'
 
 const Layout: FC<PropsWithChildren> = ({ children }) => {
   return (
     <LayoutStyled>
-      <ContainerStyled>
-        <header>
-          <Navbar />
-        </header>
-        {children}
-        <Footer />
-      </ContainerStyled>
+      <Header />
+      <ContainerStyled>{children}</ContainerStyled>
+      <Footer />
     </LayoutStyled>
   )
 }

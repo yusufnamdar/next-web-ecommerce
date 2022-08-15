@@ -8,7 +8,7 @@ const Toolbar = () => {
   return (
     <Box height="100%" display="flex" justifyContent="space-between" gap={30}>
       <Hoverbox
-        onHoverColor="#2dd4bf"
+        colorOnHover="#2dd4bf"
         variant="arrowBottomCenter"
         width={200}
         content={
@@ -27,14 +27,14 @@ const Toolbar = () => {
           Login
         </Text>
       </Hoverbox>
-      <Hoverbox onHoverColor="#fb7185">
+      <Hoverbox colorOnHover="#fb7185">
         <Icon name="favorite" color="white" />
         <Text ml={1} color="white" fontSize={13} fontWeight="semi-bold">
           Favorites
         </Text>
       </Hoverbox>
       <Hoverbox
-        onHoverColor="#fbbf24"
+        colorOnHover="#fbbf24"
         variant="arrowBottomRight"
         width={300}
         content={
