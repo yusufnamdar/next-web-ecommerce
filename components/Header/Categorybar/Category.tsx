@@ -8,10 +8,14 @@ import {
 
 interface CategoryProps extends CategoryContainerStyledProps {
   children?: ReactNode
-  iconName: string
+  iconName?: string
 }
 
-const Category: FC<CategoryProps> = ({ children, bg, iconName }) => {
+const Category: FC<CategoryProps> = ({
+  children,
+  bg,
+  iconName = 'new_releases',
+}) => {
   return (
     <CategoryContainerStyled bg={bg}>
       <CircleStyled bg={bg}>

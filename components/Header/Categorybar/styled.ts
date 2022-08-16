@@ -2,7 +2,7 @@ import styled from 'styled-components'
 import { theme } from 'styled-tools'
 import { themeProp } from 'utils'
 
-export type CategoryContainerStyledProps = { bg: string }
+export type CategoryContainerStyledProps = { bg?: string }
 
 export const CategoryContainerStyled = styled.div<CategoryContainerStyledProps>`
   position: relative;
@@ -42,4 +42,17 @@ export const CircleStyled = styled.div<CategoryContainerStyledProps>`
   height: 56px;
   border-radius: 50%;
   background-color: ${themeProp('bg', 'colors')};
+`
+export const MenuStyled = styled.div`
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 320px;
+  padding: 24px;
+  opacity: 1;
+
+  &:empty {
+    opacity: 0;
+  }
 `

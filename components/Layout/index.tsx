@@ -1,5 +1,5 @@
 import Footer from 'components/Footer'
-import Header from 'components/Header/Navbar'
+import Header from 'components/Header'
 import { FC, PropsWithChildren } from 'react'
 import { ContainerStyled, LayoutStyled } from './styled'
 

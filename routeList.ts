@@ -17,6 +17,7 @@ export const routeList: IRoute[] = [
       {
         menuId: 11,
         title: "Men's Fashion",
+        page: '/products?gender=men',
         subMenu: [
           {
             menuId: 111,
@@ -38,6 +39,7 @@ export const routeList: IRoute[] = [
       {
         menuId: 12,
         title: "Women's Fashion",
+        page: '/products?gender=women',
         subMenu: [
           {
             menuId: 121,
@@ -67,10 +69,11 @@ export const routeList: IRoute[] = [
       {
         menuId: 21,
         title: 'Toys',
+        page: '/products?category=toys',
         subMenu: [
           {
             menuId: 211,
-            title: 'Toys',
+            title: 'Baby & Toddler Toys',
             page: '/products?gender=kids&category=toys',
           },
         ],
