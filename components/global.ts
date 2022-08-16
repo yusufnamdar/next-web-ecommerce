@@ -42,7 +42,7 @@ export const GlobalStyle = createGlobalStyle`
     cursor: pointer;
   }
 
-  .no-scrollbar{
+  .no-scrollbar {
     -ms-overflow-style: none;  
     scrollbar-width: none; 
 
@@ -51,7 +51,11 @@ export const GlobalStyle = createGlobalStyle`
     }
   }
 
-  .primary-color{
+  .primary-color {
     color:${theme('colors.primary.300')};
+  }
+
+  .no-user-select {
+    user-select:none;
   }
 `

@@ -34,6 +34,12 @@
     "no-useless-escape": "off",
     "react/no-unescaped-entities": "off",
     "react/react-in-jsx-scope": "off",
+    "jsx-a11y/anchor-is-valid": [
+      "off",
+      {
+        "components": ["Link"]
+      }
+    ],
     "@typescript-eslint/explicit-function-return-type": "off",
     "@typescript-eslint/explicit-member-accessibility": "off",
     "@typescript-eslint/no-empty-function": "off",
