@@ -31,6 +31,10 @@ export const GlobalStyle = createGlobalStyle`
     color: inherit;
   }
 
+  ul, ol {
+    list-style:none;
+  }
+
   button,
   input,
   textarea,

@@ -1,34 +1,51 @@
 import { Box } from 'components/Box'
 import { Text } from 'components/Text'
-import { Category } from './Category'
-import { routeList } from 'routeList'
+import { IRoute, routeList } from 'routeList'
+import { useState } from 'react'
+import Category from './Category'
+import Menu from './Menu'
 
 const Categorybar = () => {
+  const [activeMenu, setActiveMenu] = useState<IRoute | undefined>()
+
+  const toggleMenu = (menu?: IRoute) => {
+    setActiveMenu(menu)
+  }
+
   return (
     <Box
       display="flex"
-      position="relative"
-      pt={16}
+      onMouseLeave={toggleMenu.bind(null, undefined)}
       mx="auto"
       maxWidth={1200}
-      gap={44}
-      className="no-scrollbar"
-      overflowX="auto"
+      position="relative"
     >
-      {routeList.map(({ menuId, icon, color, title }) => {
-        return (
-          <Category key={menuId} iconName={icon} bg={color}>
-            <Text
-              color="gray.400"
-              textAlign="center"
-              fontWeight="semi-bold"
-              fontSize={12}
+      <Box display="flex" className="no-scrollbar" gap={44} overflowX="auto">
+        {routeList.map((item) => {
+          const { menuId, icon, color, title } = item
+          const isExpanded = menuId === activeMenu?.menuId
+
+          return (
+            <Category
+              key={menuId}
+              iconName={icon}
+              bg={color}
+              onMouseOver={toggleMenu.bind(null, item)}
+              isExpanded={isExpanded}
             >
-              {title}
-            </Text>
-          </Category>
-        )
-      })}
+              <Text
+                color="gray.400"
+                textAlign="center"
+                fontWeight="semi-bold"
+                fontSize={12}
+              >
+                {title}
+              </Text>
+            </Category>
+          )
+        })}
+      </Box>
+      <Menu activeMenu={activeMenu} />
     </Box>
   )
 }

@@ -12,12 +12,13 @@ interface CategoryProps extends CategoryContainerStyledProps {
 }
 
 const Category: FC<CategoryProps> = ({
+  iconName = 'new_releases',
   children,
   bg,
-  iconName = 'new_releases',
+  ...props
 }) => {
   return (
-    <CategoryContainerStyled bg={bg}>
+    <CategoryContainerStyled bg={bg} {...props}>
       <CircleStyled bg={bg}>
         <Icon name={iconName} size={30} color="gray.400" />
       </CircleStyled>
@@ -26,4 +27,4 @@ const Category: FC<CategoryProps> = ({
   )
 }
 
-export { Category }
+export default Category

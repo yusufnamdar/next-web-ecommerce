@@ -15,7 +15,7 @@ export const HoverboxContainerStyled = styled.div<HoverboxContainerStyledProps>`
 
   &:hover {
     .hover-box {
-      display: block;
+      visibility: visible;
     }
     & > * {
       color: ${prop('colorOnHover')};
@@ -70,7 +70,8 @@ export interface HoverboxStyledProps extends LayoutProps {
 }
 
 export const HoverboxStyled = styled.div<HoverboxStyledProps>`
-  display: none;
+  display: block;
+  visibility: hidden;
   position: absolute;
   z-index: 1;
   box-shadow: 0 0 20px 0 ${theme('colors.gray.400')};

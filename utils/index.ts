@@ -35,7 +35,7 @@ export const noop = () => {} //this is used as a default value for parameters, s
 
 export const themeProp =
   (key: string, themeKey: ThemeKeys) => (props: IRecord) => {
-    const arr = props[key].split('.') //ex: key="bg" => gray.400 => ["gray","400"]
+    const arr = props[key].toString().split('.') //ex: key="bg" => gray.400 => ["gray","400"]
     let theme = props.theme[themeKey] //ex: themeKey="colors"
 
     arr.forEach((i: string) => {

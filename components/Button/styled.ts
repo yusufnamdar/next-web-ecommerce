@@ -9,6 +9,7 @@ const variants = {
     color: ${theme('colors.white')};
     &:hover {
       background-color: ${theme('colors.primary.300')};
+      box-shadow: 0 0 2px 0 ${theme('colors.gray.300')};
     }
     &:disabled {
       background-color: ${theme('colors.gray.300')};
@@ -21,6 +22,7 @@ const variants = {
     color: ${theme('colors.gray.400')};
     &:hover {
       background-color: ${theme('colors.primary.50')};
+      box-shadow: 0 0 2px 0 ${theme('colors.gray.300')};
     }
     &:disabled {
       background-color: ${theme('colors.gray.200')};
@@ -45,6 +47,7 @@ export const ButtonStyled = styled.button<ButtonStyledProps>`
   font-size: ${prop('fontSize', '16')}px;
   border-radius: ${theme('radii.large')};
   cursor: pointer;
+  transition: box-shadow 150ms cubic-bezier(0.4, 0, 0.2, 1);
   ${layout}
   ${space}
   ${switchProp('variant', variants)}

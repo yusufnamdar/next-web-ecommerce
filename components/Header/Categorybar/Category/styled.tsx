@@ -1,8 +1,12 @@
-import styled from 'styled-components'
-import { theme } from 'styled-tools'
+import { HTMLAttributes } from 'react'
+import styled, { css } from 'styled-components'
+import { ifProp, theme } from 'styled-tools'
 import { themeProp } from 'utils'
 
-export type CategoryContainerStyledProps = { bg?: string }
+export type CategoryContainerStyledProps = {
+  bg?: string
+  isExpanded?: boolean
+} & HTMLAttributes<HTMLDivElement>
 
 export const CategoryContainerStyled = styled.div<CategoryContainerStyledProps>`
   position: relative;
@@ -11,7 +15,7 @@ export const CategoryContainerStyled = styled.div<CategoryContainerStyledProps>`
   padding-bottom: 16px;
   cursor: pointer;
   user-select: none;
-  &:after {
+  &::after {
     display: block;
     position: absolute;
     content: '';
@@ -22,14 +26,18 @@ export const CategoryContainerStyled = styled.div<CategoryContainerStyledProps>`
     height: 4px;
     background-color: ${themeProp('bg', 'colors')};
   }
-  &:hover {
-    & > div:first-child {
-      border: 2px solid ${theme('colors.gray.400')};
-    }
-    &:after {
-      opacity: 1;
-    }
-  }
+
+  ${ifProp(
+    'isExpanded',
+    css`
+      & > div:first-child {
+        border: 2px solid ${theme('colors.gray.400')};
+      }
+      &:after {
+        opacity: 1;
+      }
+    `
+  )}
 `
 
 export const CircleStyled = styled.div<CategoryContainerStyledProps>`
@@ -42,17 +50,4 @@ export const CircleStyled = styled.div<CategoryContainerStyledProps>`
   height: 56px;
   border-radius: 50%;
   background-color: ${themeProp('bg', 'colors')};
-`
-export const MenuStyled = styled.div`
-  position: absolute;
-  top: 100%;
-  left: 0;
-  width: 100%;
-  height: 320px;
-  padding: 24px;
-  opacity: 1;
-
-  &:empty {
-    opacity: 0;
-  }
 `
