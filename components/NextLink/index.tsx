@@ -11,13 +11,14 @@ const NextLink: FC<NextLinkProps> = ({
   children,
   className,
   disabled = false,
+  prefetch = false,
   ...props
 }) => {
   if (disabled) {
     return <>{children}</>
   }
   return (
-    <Link {...props}>
+    <Link {...props} prefetch={prefetch}>
       <a className={className}>{children}</a>
     </Link>
   )

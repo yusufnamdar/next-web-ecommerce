@@ -31,7 +31,13 @@ const Header = () => {
             <Toolbar />
           </Box>
         </Box>
-        <Box bg="body" px={16} borderBottom="2px solid black">
+        <Box
+          bg="white"
+          px={16}
+          pt={16}
+          borderBottom="1px solid"
+          borderBottomColor="gray.200"
+        >
           <Categorybar />
         </Box>
       </nav>
