@@ -1,4 +1,5 @@
 import { Box } from 'components/Box'
+import { NextLink } from 'components/NextLink'
 import { Text } from 'components/Text'
 import Categorybar from './Categorybar'
 import Searchbar from './Searchbar'
@@ -17,16 +18,18 @@ const Header = () => {
             maxWidth={1200}
             mx="auto"
           >
-            <Text
-              fontFamily="bahaianita"
-              fontWeight="semi-bold"
-              color="teal.300"
-              fontSize={48}
-              letterSpacing={3}
-              lineHeight={1}
-            >
-              NAM<span className="primary-color">STORE</span>
-            </Text>
+            <NextLink href="/" className="no-user-select">
+              <Text
+                fontFamily="bahaianita"
+                fontWeight="semi-bold"
+                color="teal.300"
+                fontSize={48}
+                letterSpacing={3}
+                lineHeight={1}
+              >
+                NAM<span className="primary-color">STORE</span>
+              </Text>
+            </NextLink>
             <Searchbar />
             <Toolbar />
           </Box>
