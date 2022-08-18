@@ -5,11 +5,31 @@ import { useState } from 'react'
 import Category from './Category'
 import Menu from './Menu'
 
+let timer: any
+
+const clear = () => {
+  clearTimeout(timer)
+  timer = undefined
+}
+
 const Categorybar = () => {
   const [activeMenu, setActiveMenu] = useState<IRoute | undefined>()
 
   const toggleMenu = (menu?: IRoute) => {
-    setActiveMenu(menu)
+    //if there is an expanded menu, expand the new menu without using settimeout.
+    if (activeMenu) {
+      clear()
+      setActiveMenu(menu)
+      return
+    }
+    //if there is already a settimeout, clear the timeout first.
+    if (timer) {
+      clear()
+    }
+    //when first hovered on a category, set the timeout with 300ms.
+    timer = setTimeout(() => {
+      setActiveMenu(menu)
+    }, 300)
   }
 
   return (

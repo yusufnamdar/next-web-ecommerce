@@ -8,5 +8,8 @@ export const LayoutStyled = styled.div`
 `
 
 export const ContainerStyled = styled.div`
-  flex: 1 1 auto; //this makes the component's height take as much space as possible.
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  flex-grow: 1; //this makes the page component's height take as much space as possible.
 `
