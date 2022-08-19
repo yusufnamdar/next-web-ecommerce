@@ -3,7 +3,7 @@ import { FC, ReactNode } from 'react'
 import {
   CategoryContainerStyled,
   CategoryContainerStyledProps,
-  CircleStyled,
+  CategoryCircleStyled,
 } from './styled'
 
 interface CategoryProps extends CategoryContainerStyledProps {
@@ -19,9 +19,9 @@ const Category: FC<CategoryProps> = ({
 }) => {
   return (
     <CategoryContainerStyled bg={bg} {...props}>
-      <CircleStyled bg={bg}>
+      <CategoryCircleStyled bg={bg}>
         <Icon name={iconName} size={30} color="gray.400" />
-      </CircleStyled>
+      </CategoryCircleStyled>
       {children}
     </CategoryContainerStyled>
   )

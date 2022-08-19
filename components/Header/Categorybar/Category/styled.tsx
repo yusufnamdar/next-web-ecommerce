@@ -40,7 +40,7 @@ export const CategoryContainerStyled = styled.div<CategoryContainerStyledProps>`
   )}
 `
 
-export const CircleStyled = styled.div<CategoryContainerStyledProps>`
+export const CategoryCircleStyled = styled.div<CategoryContainerStyledProps>`
   display: flex;
   justify-content: center;
   align-items: center;

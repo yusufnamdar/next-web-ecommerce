@@ -56,10 +56,10 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   .primary-color {
-    color:${theme('colors.primary.300')};
+    color: ${theme('colors.primary.300')};
   }
 
   .no-user-select {
-    user-select:none;
+    user-select: none;
   }
 `
