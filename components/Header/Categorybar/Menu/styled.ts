@@ -20,9 +20,11 @@ export const MenuStyled = styled.div<MenuStyledProps>`
   ${ifProp(
     'isExpanded',
     css`
+      visibility: visible;
       opacity: 1;
     `,
     css`
+      visibility: hidden;
       opacity: 0;
     `
   )}

@@ -29,7 +29,7 @@ const Categorybar = () => {
     //when first hovered on a category, set the timeout with 300ms.
     timer = setTimeout(() => {
       setActiveMenu(menu)
-    }, 300)
+    }, 200)
   }
 
   return (

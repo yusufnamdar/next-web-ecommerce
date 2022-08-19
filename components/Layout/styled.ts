@@ -11,5 +11,6 @@ export const ContainerStyled = styled.div`
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
+  padding: 30px 0;
   flex-grow: 1; //this makes the page component's height take as much space as possible.
 `

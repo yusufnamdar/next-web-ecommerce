@@ -3,6 +3,7 @@
 type IRecord = Record<string, any>
 
 interface IProduct {
+  _id: string
   title: string
   gender: string
   seller: string
