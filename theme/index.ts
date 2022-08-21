@@ -13,7 +13,7 @@ export const sharedTheme = {
     yellow: '#ffc82c',
     white: '#fff',
     emerald: { 300: '#6ee7b7' },
-    rose: { 300: '#fda4af' },
+    rose: { 300: '#fda4af', 400: '#fb7185' },
     teal: { 300: '#5eead4' },
     primary: { 50: '#fffbeb', 300: '#fcd34d', 400: '#fbbf24', 600: '#ea580c' },
     danger: { 300: '#fca5a5', 400: '#f87171' },

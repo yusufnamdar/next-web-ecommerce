@@ -19,7 +19,7 @@ export const InputStyled = styled.input<InputStyledProps>`
   height: 100%;
   font-size: 15px;
   padding-left: 16px;
-  padding-right: ${prop('pr')}px;
+  padding-right: ${prop('pr', '16')}px;
   font-family: ${theme('fonts.ibm')};
   border-radius: ${theme('radii.regular')};
   border: none;

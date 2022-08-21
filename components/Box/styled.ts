@@ -25,7 +25,7 @@ export type BoxStyledProps = { gap?: number } & SpaceProps &
   HTMLAttributes<HTMLDivElement>
 
 export const BoxStyled = styled.div<BoxStyledProps>`
-  gap: ${prop('gap')}px;
+  gap: ${prop('gap', '0')}px;
   ${color}
   ${space}
   ${layout}
