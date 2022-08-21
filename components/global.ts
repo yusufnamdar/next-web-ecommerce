@@ -42,7 +42,7 @@ export const GlobalStyle = createGlobalStyle`
     outline: none;
   }
 
-  .cursor {
+  .pointer {
     cursor: pointer;
   }
 
