@@ -43,3 +43,7 @@ export const themeProp =
     })
     return theme
   }
+
+export const getSerializableData = (obj: any) => {
+  return JSON.parse(JSON.stringify(obj))
+}
