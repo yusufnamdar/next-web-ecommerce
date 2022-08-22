@@ -8,7 +8,6 @@ export const CardContainerStyled = styled.div`
   background-color: ${theme('colors.white')};
   border-radius: ${theme('radii.regular')};
   overflow: hidden;
-  cursor: pointer;
   user-select: none;
   transition: box-shadow 0.2s linear;
 
@@ -37,6 +36,6 @@ export const FavoriteCircleStyled = styled.div`
   transition: color 0.2s ease-in-out;
 
   &:hover {
-    color: ${theme('colors.primary.400')};
+    color: ${theme('colors.rose.400')};
   }
 `

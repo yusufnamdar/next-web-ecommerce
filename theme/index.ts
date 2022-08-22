@@ -55,7 +55,7 @@ export const lightTheme = {
     ...sharedTheme.colors,
     body: '#f1f5f9', //slate-100
     text: '#000', //black
-    panel: '#f8fafc', //slate-50
+    panel: '#f9fafb', //gray-50
   },
 }
 
@@ -65,7 +65,7 @@ export const darkTheme = {
     ...sharedTheme.colors,
     body: '#0f172a', //slate-900
     text: '#f1f5f9', //slate-100
-    panel: '#115e59', //teal-800
+    panel: '#111827', //gray-900
   },
 }
 //background-image: linear-gradient(to top, #30cfd0 0%, #330867 100%);
