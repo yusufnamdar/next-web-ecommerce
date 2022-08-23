@@ -31,6 +31,7 @@
   "rules": {
     "react/prop-types": "off",
     "react/display-name": "off",
+    "react-hooks/exhaustive-deps": "off",
     "no-useless-escape": "off",
     "react/no-unescaped-entities": "off",
     "react/react-in-jsx-scope": "off",

@@ -17,7 +17,7 @@ interface IProduct {
   images?: string[]
   description?: string
   options?: {
-    type: string
+    type: 'material' | 'color' | 'size' | 'fit' | 'heel' | 'age' | 'brand'
     value: string[]
   }
   createdAt: string

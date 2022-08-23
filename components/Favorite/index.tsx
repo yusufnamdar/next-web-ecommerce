@@ -1,6 +1,6 @@
 import { Icon } from 'components/Icon'
 import { FavoriteCircleStyled } from './styled'
-//rose.400
+
 const Favorite = () => {
   return (
     <FavoriteCircleStyled>
@@ -9,4 +9,4 @@ const Favorite = () => {
   )
 }
 
-export default Favorite
+export { Favorite }
