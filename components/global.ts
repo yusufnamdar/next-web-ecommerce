@@ -62,4 +62,16 @@ export const GlobalStyle = createGlobalStyle`
   .no-user-select {
     user-select: none;
   }
+
+  .cyan-400 {
+    background-color:${theme('colors.cyan.400')};
+  }
+
+  .gray-400 {
+    background-color:${theme('colors.gray.400')};
+  }
+
+  .capitalize {
+    text-transform: capitalize;
+  }
 `

@@ -3,8 +3,8 @@ import { Text } from 'components/Text'
 import { FC } from 'react'
 import { CardContainerStyled } from './styled'
 import Image from 'next/image'
-import Favorite from './Favorite'
 import { StarRating } from 'components/StarRating'
+import { Favorite } from 'components/Favorite'
 
 const Card: FC<IProduct> = ({ skus, images = [], title, reviews }) => {
   const price = skus[0].price
