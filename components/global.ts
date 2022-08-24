@@ -63,12 +63,12 @@ export const GlobalStyle = createGlobalStyle`
     user-select: none;
   }
 
-  .cyan-400 {
-    background-color:${theme('colors.cyan.400')};
+  .cyan-500 {
+    color:${theme('colors.cyan.500')};
   }
 
   .gray-400 {
-    background-color:${theme('colors.gray.400')};
+    color:${theme('colors.gray.400')};
   }
 
   .capitalize {
