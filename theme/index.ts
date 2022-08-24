@@ -19,7 +19,13 @@ export const sharedTheme = {
     danger: { 300: '#fca5a5', 400: '#f87171' },
     gray: { 200: '#e5e7eb', 300: '#d1d5db', 400: '#6b7280' },
     slate: { 100: '#f1f5f9', 300: '#cbd5e1' },
-    cyan: { 1000: '#0B2833', 900: '#164e63', 400: '#22d3ee', 300: '#67e8f9' },
+    cyan: {
+      1000: '#0B2833',
+      900: '#164e63',
+      500: '#0ea5e9',
+      400: '#22d3ee',
+      300: '#67e8f9',
+    },
     fuschsia: { 300: '#f0abfc' },
   },
   space: [0, 4, 8, 12, 24], //It's recommended to set 0 as the first value in the array.

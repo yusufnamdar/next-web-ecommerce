@@ -17,8 +17,8 @@ interface IProduct {
   images?: string[]
   description?: string
   options?: {
-    type: 'material' | 'color' | 'size' | 'fit' | 'heel' | 'age' | 'brand'
-    value: string[]
+    type: OptionType
+    value: OptionValueType[]
   }
   createdAt: string
   updatedAt: string
@@ -43,3 +43,14 @@ interface IResponse<T> {
   result?: T
   filters?: Record<string, unknown>
 }
+
+type OptionType =
+  | 'material'
+  | 'color'
+  | 'size'
+  | 'fit'
+  | 'heel'
+  | 'age'
+  | 'brand'
+
+type OptionValueType = 1 | 2 | 3 | 4 | 5 | 6 | 'S' | 'M' | 'L'
