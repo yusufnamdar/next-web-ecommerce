@@ -19,7 +19,7 @@ const Card: FC<IProduct> = ({ skus, images = [], title, reviews }) => {
           blurDataURL="https://via.placeholder.com/5"
           layout="fill"
         />
-        <Favorite />
+        <Favorite position="absolute" top={5} right={5} />
       </Box>
       <Box p={10}>
         <Box height={32} mb={5}>

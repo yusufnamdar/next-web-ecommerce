@@ -53,4 +53,4 @@ type OptionType =
   | 'age'
   | 'brand'
 
-type OptionValueType = 1 | 2 | 3 | 4 | 5 | 6 | 'S' | 'M' | 'L'
+type OptionValueType = 1 | 2 | 3 | 4 | 5 | 6 | 'S' | 'M' | 'L' | 35 | 40 | 45

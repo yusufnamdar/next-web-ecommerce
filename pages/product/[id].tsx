@@ -10,7 +10,7 @@ import { Icon } from 'components/Icon'
 import { Button } from 'components/Button'
 import { Favorite } from 'components/Favorite'
 import type { GetStaticPaths, GetStaticProps, NextPage } from 'next'
-import { optionValueMap } from 'utils/constants'
+import { optionTextMap, optionValueMap } from 'utils/constants'
 import Image from 'next/image'
 import SkuOption from 'components/Product/SkuOption'
 
@@ -32,20 +32,22 @@ const ProductPage: NextPage<ProductPageProps> = ({ product }) => {
   } = product || {}
   const { type = 'size', value } = options || {}
   const [sku, setSku] = useState(skus[0])
+  const isSelectedOutOfStock = !sku.quantity
 
   const handleSkus = (value: OptionValueType) => {
-    const sku = skus.find((sku) => sku[type] === value)
+    const sku = skus.find((sku) => sku[type] == value)
     sku && setSku(sku)
   }
 
   return (
-    <Panel display="flex" justifyContent="space-between" p={20}>
+    <Panel width={1000} display="flex" mx="auto" p={20}>
       <Box
         position="relative"
-        width={600}
+        width={400}
+        minWidth={400}
         height={600}
         mr={24}
-        borderRadius="large"
+        borderRadius="regular"
         overflow="hidden"
       >
         <Image
@@ -57,13 +59,13 @@ const ProductPage: NextPage<ProductPageProps> = ({ product }) => {
           objectFit="cover"
         />
       </Box>
-      <Box>
+      <Box width={1}>
         <Text fontSize={11} color="gray.400" mb={5}>
           {`${
             gender ? gender[0].toUpperCase() + gender.substring(1) + ' ' : ''
           }${category} category`}
         </Text>
-        <Text fontSize={20} fontWeight="semi-bold">
+        <Text fontSize={20} fontWeight="semi-bold" mb="2px">
           {title}
         </Text>
         <Text fontSize={11} color="gray.400">
@@ -83,20 +85,23 @@ const ProductPage: NextPage<ProductPageProps> = ({ product }) => {
           $ {sku.price}
         </Text>
         <Box height={1} bg="gray.300" my={16} />
-        <Box hidden={!options}>
+        <Box hidden={!options} mb={10}>
           <Text
             className="capitalize"
             fontSize={14}
             fontWeight="semi-bold"
-            mb={16}
+            mb={10}
           >
-            {type}: <span className="gray-400">{type && sku[type]}</span>
+            {type}:{' '}
+            <span className="gray-400">
+              {optionTextMap[sku[type] as OptionValueType]}
+            </span>
           </Text>
-          <Box display="flex" gap={10}>
+          <Box display="flex" gap={10} mb={10}>
             {value?.map((optionValue) => {
-              const isActive = sku[type] === optionValue
-              const isOutOfStock =
-                skus.find((sku) => sku[type] === optionValue)?.quantity === 0
+              const isActive = sku[type] == optionValue //some sku values are number and all option values are string, that is why "==" is used
+              const isOutOfStock = !skus.find((sku) => sku[type] == optionValue)
+                ?.quantity
               return (
                 <SkuOption
                   key={optionValue}
@@ -109,8 +114,7 @@ const ProductPage: NextPage<ProductPageProps> = ({ product }) => {
               )
             })}
           </Box>
-          {/* margin i başka yere koyabiliriz */}
-          <Box my={10} display="flex" alignItems="center">
+          <Box mt={10} display="flex" alignItems="center">
             <Icon name="checkroom" size={20} color="primary.400" />
             <Text fontSize={12} color="gray.400" ml={6} mt={1}>
               Most users recommend getting your known size.
@@ -118,10 +122,16 @@ const ProductPage: NextPage<ProductPageProps> = ({ product }) => {
           </Box>
         </Box>
         <Box display="flex">
-          <Button width={1} height={50}>
-            Add to Cart
+          <Button width={1} height={50} disabled={isSelectedOutOfStock} mr={15}>
+            {isSelectedOutOfStock ? 'Out of Stock' : 'Add to Cart'}
           </Button>
-          <Favorite />
+          <Favorite
+            size={50}
+            borderWidth={1}
+            borderStyle="solid"
+            borderColor="gray.300"
+            borderRadius="large"
+          />
         </Box>
         <Box height={1} bg="gray.300" my={16} />
         <Text fontSize={14} mb={1} fontWeight="semi-bold" color="gray.400">

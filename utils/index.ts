@@ -34,13 +34,16 @@ export const getFilters = (products: IProduct[] | IProduct): IRecord => {
 export const noop = () => {} //this is used as a default value for parameters, so typescript does not give "possibly undefined" error
 
 export const themeProp =
-  (key: string, themeKey: ThemeKeys) => (props: IRecord) => {
-    const arr = props[key].toString().split('.') //ex: key="bg" => gray.400 => ["gray","400"]
+  (key: string, themeKey?: ThemeKeys) => (props: IRecord) => {
+    if (!themeKey) return props[key]
+
+    const arr = props[key]?.toString()?.split('.') //ex: key="bg" => gray.400 => ["gray","400"]
     let theme = props.theme[themeKey] //ex: themeKey="colors"
 
-    arr.forEach((i: string) => {
-      theme = theme[i]
+    arr?.forEach((i: string) => {
+      theme = theme?.[i]
     })
+    if (!theme) return props[key]
     return theme
   }
 
