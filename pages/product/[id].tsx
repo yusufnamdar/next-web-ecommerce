@@ -11,8 +11,8 @@ import { Button } from 'components/Button'
 import { Favorite } from 'components/Favorite'
 import type { GetStaticPaths, GetStaticProps, NextPage } from 'next'
 import { optionTextMap, optionValueMap } from 'utils/constants'
-import Image from 'next/image'
 import SkuOption from 'components/Product/SkuOption'
+import Gallery from 'components/Product/Gallery'
 
 interface ProductPageProps {
   product: IProduct
@@ -41,24 +41,7 @@ const ProductPage: NextPage<ProductPageProps> = ({ product }) => {
 
   return (
     <Panel width={1000} display="flex" mx="auto" p={20}>
-      <Box
-        position="relative"
-        width={400}
-        minWidth={400}
-        height={600}
-        mr={24}
-        borderRadius="regular"
-        overflow="hidden"
-      >
-        <Image
-          src={images[0]}
-          alt={title}
-          placeholder="blur"
-          blurDataURL="https://via.placeholder.com/5"
-          layout="fill"
-          objectFit="cover"
-        />
-      </Box>
+      <Gallery images={images} title={title} />
       <Box width={1}>
         <Text fontSize={11} color="gray.400" mb={5}>
           {`${
