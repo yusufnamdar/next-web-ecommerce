@@ -1,4 +1,4 @@
-import { models, model, Schema, Model } from 'mongoose'
+import { models, model, Schema, Model, Query } from 'mongoose'
 
 interface IProductModel extends Model<IProduct> {
   buildQuery(req: IRecord): any
@@ -40,13 +40,18 @@ const productSchema = new Schema<IProduct>(
 )
 
 productSchema.statics.buildQuery = function (req) {
-  const query = this.find() // Mongoose will not execute a query until exec has been called
-  Object.entries(req).forEach(([key, value]: [string, any]) => {
+  const query: Query<any, any> = this.find() // Mongoose will not execute a query until exec has been called
+  Object.entries(req).map(([key, value]: [string, any]) => {
     if (!value) return
 
     const multiple = value.split(',')
     if (key === 'gender') {
       return query.where('gender').in(multiple)
+    }
+    if (key === 'category') {
+      return query
+        .where('category')
+        .in(multiple.map((i: string) => new RegExp(i, 'i')))
     }
     if (key === 'sale') {
       return query.sort({ saleCount: value })
