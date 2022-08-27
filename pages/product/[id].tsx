@@ -13,6 +13,7 @@ import type { GetStaticPaths, GetStaticProps, NextPage } from 'next'
 import { optionTextMap, optionValueMap } from 'utils/constants'
 import SkuOption from 'components/Product/SkuOption'
 import Gallery from 'components/Product/Gallery'
+import { Row } from 'components/global'
 
 interface ProductPageProps {
   product: IProduct
@@ -40,90 +41,98 @@ const ProductPage: NextPage<ProductPageProps> = ({ product }) => {
   }
 
   return (
-    <Panel width={1000} display="flex" mx="auto" p={20}>
-      <Gallery images={images} title={title} />
-      <Box width={1}>
-        <Text fontSize={11} color="gray.400" mb={5}>
-          {`${
-            gender ? gender[0].toUpperCase() + gender.substring(1) + ' ' : ''
-          }${category} category`}
-        </Text>
-        <Text fontSize={20} fontWeight="semi-bold" mb="2px">
-          {title}
-        </Text>
-        <Text fontSize={11} color="gray.400">
-          Seller: <span className="cyan-500">{seller.toUpperCase()}</span>
-        </Text>
-        <Box display="flex" alignItems="center" my={10}>
-          <StarRating rate={reviews?.average} size={14} disabled />
-          {!!reviews?.count && (
-            <Text
-              ml={1}
-              fontSize={10}
-              color="gray.400"
-            >{`${reviews?.count} reviews`}</Text>
-          )}
-        </Box>
-        <Text fontSize={24} fontWeight="semi-bold" color="primary.400">
-          $ {sku.price}
-        </Text>
-        <Box height={1} bg="gray.300" my={16} />
-        <Box hidden={!options} mb={10}>
-          <Text
-            className="capitalize"
-            fontSize={14}
-            fontWeight="semi-bold"
-            mb={10}
-          >
-            {type}:{' '}
-            <span className="gray-400">
-              {optionTextMap[sku[type] as OptionValueType]}
-            </span>
+    <Panel maxWidth={1000} mx="auto" p={20}>
+      <Row gap={24}>
+        <Gallery images={images} title={title} />
+        <Box width={1}>
+          <Text fontSize={11} color="gray.400" mb={5}>
+            {`${
+              gender ? gender[0].toUpperCase() + gender.substring(1) + ' ' : ''
+            }${category} category`}
           </Text>
-          <Box display="flex" gap={10} mb={10}>
-            {value?.map((optionValue) => {
-              const isActive = sku[type] == optionValue //some sku values are number and all option values are string, that is why "==" is used
-              const isOutOfStock = !skus.find((sku) => sku[type] == optionValue)
-                ?.quantity
-              return (
-                <SkuOption
-                  key={optionValue}
-                  type={type}
-                  value={optionValueMap[optionValue]}
-                  isActive={isActive}
-                  isOutOfStock={isOutOfStock}
-                  onClick={handleSkus.bind(null, optionValue)}
-                />
-              )
-            })}
+          <Text fontSize={20} fontWeight="semi-bold" mb="2px">
+            {title}
+          </Text>
+          <Text fontSize={11} color="gray.400">
+            Seller: <span className="cyan-500">{seller.toUpperCase()}</span>
+          </Text>
+          <Box display="flex" alignItems="center" my={10}>
+            <StarRating rate={reviews?.average} size={14} disabled />
+            {!!reviews?.count && (
+              <Text
+                ml={1}
+                fontSize={10}
+                color="gray.400"
+              >{`${reviews?.count} reviews`}</Text>
+            )}
           </Box>
-          <Box mt={10} display="flex" alignItems="center">
-            <Icon name="checkroom" size={20} color="primary.400" />
-            <Text fontSize={12} color="gray.400" ml={6} mt={1}>
-              Most users recommend getting your known size.
+          <Text fontSize={24} fontWeight="semi-bold" color="primary.400">
+            $ {sku.price}
+          </Text>
+          <Box height={1} bg="gray.300" my={16} />
+          <Box hidden={!options} mb={10}>
+            <Text
+              className="capitalize"
+              fontSize={14}
+              fontWeight="semi-bold"
+              mb={10}
+            >
+              {type}:{' '}
+              <span className="gray-400">
+                {optionTextMap[sku[type] as OptionValueType]}
+              </span>
             </Text>
+            <Box display="flex" gap={10} mb={10}>
+              {value?.map((optionValue) => {
+                const isActive = sku[type] == optionValue //some sku values are number and all option values are string, that is why "==" is used
+                const isOutOfStock = !skus.find(
+                  (sku) => sku[type] == optionValue
+                )?.quantity
+                return (
+                  <SkuOption
+                    key={optionValue}
+                    type={type}
+                    value={optionValueMap[optionValue]}
+                    isActive={isActive}
+                    isOutOfStock={isOutOfStock}
+                    onClick={handleSkus.bind(null, optionValue)}
+                  />
+                )
+              })}
+            </Box>
+            <Box mt={10} display="flex" alignItems="center">
+              <Icon name="checkroom" size={20} color="primary.400" />
+              <Text fontSize={12} color="gray.400" ml={6} mt={1}>
+                Most users recommend getting your known size.
+              </Text>
+            </Box>
           </Box>
+          <Box display="flex">
+            <Button
+              width={1}
+              height={50}
+              disabled={isSelectedOutOfStock}
+              mr={15}
+            >
+              {isSelectedOutOfStock ? 'Out of Stock' : 'Add to Cart'}
+            </Button>
+            <Favorite
+              size={50}
+              borderWidth={1}
+              borderStyle="solid"
+              borderColor="gray.300"
+              borderRadius="large"
+            />
+          </Box>
+          <Box height={1} bg="gray.300" my={16} />
+          <Text fontSize={14} mb={1} fontWeight="semi-bold" color="gray.400">
+            Description
+          </Text>
+          <Text fontSize={12} lineHeight={1.5} color="gray.400">
+            {description}
+          </Text>
         </Box>
-        <Box display="flex">
-          <Button width={1} height={50} disabled={isSelectedOutOfStock} mr={15}>
-            {isSelectedOutOfStock ? 'Out of Stock' : 'Add to Cart'}
-          </Button>
-          <Favorite
-            size={50}
-            borderWidth={1}
-            borderStyle="solid"
-            borderColor="gray.300"
-            borderRadius="large"
-          />
-        </Box>
-        <Box height={1} bg="gray.300" my={16} />
-        <Text fontSize={14} mb={1} fontWeight="semi-bold" color="gray.400">
-          Description
-        </Text>
-        <Text fontSize={12} lineHeight={1.5} color="gray.400">
-          {description}
-        </Text>
-      </Box>
+      </Row>
     </Panel>
   )
 }

@@ -1,5 +1,6 @@
-import { createGlobalStyle } from 'styled-components'
+import styled, { createGlobalStyle } from 'styled-components'
 import { theme } from 'styled-tools'
+import { Box } from './Box'
 
 export const GlobalStyle = createGlobalStyle`
   html {
@@ -73,5 +74,19 @@ export const GlobalStyle = createGlobalStyle`
 
   .capitalize {
     text-transform: capitalize;
+  }
+`
+export const Row = styled(Box)`
+  display: flex;
+  flex-direction: row;
+
+  && {
+    @media (max-width: 768px) {
+      flex-direction: column;
+
+      > * {
+        width: 100%;
+      }
+    }
   }
 `

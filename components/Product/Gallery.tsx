@@ -20,9 +20,16 @@ const Gallery: FC<GalleryProps> = ({ images, title }) => {
   }
 
   return (
-    <Box width={400} minWidth={400} mr={24}>
+    <Box
+      display="flex"
+      flexDirection="column"
+      alignItems="center"
+      width={400}
+      minWidth={400}
+    >
       <Box
         position="relative"
+        width={400}
         height={600}
         borderRadius="regular"
         overflow="hidden"
@@ -40,12 +47,12 @@ const Gallery: FC<GalleryProps> = ({ images, title }) => {
           height="100%"
           display="flex"
           alignItems="center"
-          onClick={handleNext}
           position="absolute"
           right={0}
         >
           <Icon
             name="arrow_forward_ios"
+            onClick={handleNext}
             size={50}
             color="primary.500"
             cursor="pointer"
@@ -56,11 +63,11 @@ const Gallery: FC<GalleryProps> = ({ images, title }) => {
           height="100%"
           display="flex"
           alignItems="center"
-          onClick={handlePrevious}
           position="absolute"
         >
           <Icon
             name="arrow_back_ios"
+            onClick={handlePrevious}
             size={50}
             color="primary.500"
             cursor="pointer"

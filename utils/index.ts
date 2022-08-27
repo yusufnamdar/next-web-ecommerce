@@ -5,10 +5,15 @@ export const getFilters = (products: IProduct[] | IProduct): IRecord => {
   const filters: IRecord = {}
 
   if (Array.isArray(products)) {
-    products.forEach((product: IProduct) =>
-      product.skus.forEach((sku: any) => {
-        Object.entries(sku.toObject()).forEach(([key, value]) => {
-          if (key === '_id' || key === 'sku' || filters[key]?.includes(value))
+    products.map((product: IProduct) =>
+      product.skus.map((sku: any) => {
+        Object.entries(sku.toObject()).map(([key, value]) => {
+          if (
+            key === '_id' ||
+            key === 'sku' ||
+            key === 'quantity' ||
+            filters[key]?.includes(value)
+          )
             return
           filters[key] = Array.isArray(filters[key])
             ? [...filters[key], value]
@@ -17,8 +22,8 @@ export const getFilters = (products: IProduct[] | IProduct): IRecord => {
       })
     )
   } else {
-    products.skus.forEach((sku: any) => {
-      Object.entries(sku.toObject()).forEach(([key, value]) => {
+    products.skus.map((sku: any) => {
+      Object.entries(sku.toObject()).map(([key, value]) => {
         if (key === '_id' || key === 'sku' || filters[key]?.includes(value))
           return
         filters[key] = Array.isArray(filters[key])
@@ -31,7 +36,7 @@ export const getFilters = (products: IProduct[] | IProduct): IRecord => {
   return filters
 }
 
-export const noop = () => {} //this is used as a default value for parameters, so typescript does not give "possibly undefined" error
+export const noop = () => {} //this is used as a default value for function parameters, so typescript does not give "possibly undefined" error
 
 export const themeProp =
   (key: string, themeKey?: ThemeKeys) => (props: IRecord) => {
