@@ -1,5 +1,6 @@
 import { Box } from 'components/Box'
 import { Card } from 'components/Card'
+import Announcements from 'components/Home/Announcements'
 import { NextLink } from 'components/NextLink'
 import { Product } from 'models/productModel'
 import type { GetStaticProps, NextPage } from 'next'
@@ -12,15 +13,18 @@ interface HomePageProps {
 
 const HomePage: NextPage<HomePageProps> = ({ products }) => {
   return (
-    <Box display="flex" flexWrap="wrap" gap={20} justifyContent="center">
-      {products?.map((product) => {
-        return (
-          <NextLink key={product._id} href={`/product/${product._id}`}>
-            <Card {...product} />
-          </NextLink>
-        )
-      })}
-    </Box>
+    <>
+      <Announcements height={540} mb={48} />
+      <Box display="flex" flexWrap="wrap" gap={20} justifyContent="center">
+        {products?.map((product) => {
+          return (
+            <NextLink key={product._id} href={`/product/${product._id}`}>
+              <Card {...product} />
+            </NextLink>
+          )
+        })}
+      </Box>
+    </>
   )
 }
 
