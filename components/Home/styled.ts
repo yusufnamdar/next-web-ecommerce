@@ -12,11 +12,14 @@ export const AnnouncementContainerStyled = styled.div<AnnouncementContainerStyle
   right: 0;
   height: ${prop('height', '0')}px;
   opacity: 0;
+  z-index: 0;
+  transform: translateY(-30px);
   transition: opacity 0.2s linear;
 
   ${ifProp(
     'isActive',
     css`
+      z-index: 1;
       opacity: 1;
     `
   )}
