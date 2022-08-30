@@ -8,7 +8,7 @@ export const MenuStyled = styled.div<MenuStyledProps>`
   position: absolute;
   top: 100%;
   left: 0;
-  z-index: 1;
+  z-index: 2;
   padding: 24px;
   width: 100%;
   height: 320px;

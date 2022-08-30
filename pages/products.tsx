@@ -6,11 +6,11 @@ import type { GetServerSideProps, NextPage } from 'next'
 import { getSerializableData } from 'utils'
 import { connect } from 'utils/mongodb'
 
-interface HomePageProps {
+interface ProductsPageProps {
   products: IProduct[]
 }
 
-const HomePage: NextPage<HomePageProps> = ({ products }) => {
+const ProductsPage: NextPage<ProductsPageProps> = ({ products }) => {
   return (
     <Box display="flex" flexWrap="wrap" gap={20} justifyContent="center">
       {products?.map((product) => {
@@ -32,4 +32,4 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   return { props: { products: getSerializableData(products) } } //Next could not serialize ObjectId func and Dates as JSON, so we need to manually stringify the data and then parse it.
 }
 
-export default HomePage
+export default ProductsPage

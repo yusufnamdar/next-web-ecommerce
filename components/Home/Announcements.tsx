@@ -14,7 +14,7 @@ const announcements = [
   {
     id: 1,
     title: "Men's T-Shirts on Sale",
-    href: '/products?gender=male&category=t-shirts',
+    href: '/products?gender=men&category=t-shirts',
     backgroundImage: '/volf.jpg',
     image: '/t-shirt.jpg',
     alt: 'man-walking',
@@ -26,7 +26,6 @@ const announcements = [
     backgroundImage: '/white-wood.jpg',
     image: '/pants.jpg',
     alt: 'women-pants',
-    position: '0 -320px',
   },
   {
     id: 3,
@@ -44,7 +43,6 @@ const announcements = [
     backgroundImage: '/brown-wood.jpg',
     image: '/sneakers.jpg',
     alt: 'red-shoe',
-    position: '0 -300px',
   },
 ]
 
@@ -52,7 +50,7 @@ interface AnnouncementProps extends Omit<BoxProps, 'height'> {
   height?: number
 }
 
-let timer: any = -1
+let timer: any
 
 const Announcements: FC<AnnouncementProps> = ({ height, ...props }) => {
   const [active, setActive] = useState(1)
@@ -93,8 +91,6 @@ const Announcements: FC<AnnouncementProps> = ({ height, ...props }) => {
               src={item.backgroundImage}
               alt={item.backgroundImage}
               layout="fill"
-              objectFit="cover"
-              objectPosition="0 -300px"
             />
             <AnnouncementStyled
               onMouseOver={stopTimer}

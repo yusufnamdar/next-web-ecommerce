@@ -50,14 +50,26 @@ const Gallery: FC<GalleryProps> = ({ images, title }) => {
           position="absolute"
           right={0}
         >
-          <Icon
-            name="arrow_forward_ios"
+          <Box
+            className="pointer"
+            display="flex"
+            justifyContent="center"
+            alignItems="center"
             onClick={handleNext}
-            size={50}
-            color="primary.500"
-            cursor="pointer"
-            outlined
-          />
+            width={40}
+            height={50}
+            borderBottomLeftRadius="large"
+            borderTopLeftRadius="large"
+            bg="white"
+          >
+            <Icon
+              name="arrow_forward_ios"
+              size={30}
+              color="primary.500"
+              cursor="pointer"
+              outlined
+            />
+          </Box>
         </Box>
         <Box
           height="100%"
@@ -65,14 +77,25 @@ const Gallery: FC<GalleryProps> = ({ images, title }) => {
           alignItems="center"
           position="absolute"
         >
-          <Icon
-            name="arrow_back_ios"
+          <Box
+            className="pointer"
+            display="flex"
+            justifyContent="center"
+            alignItems="center"
             onClick={handlePrevious}
-            size={50}
-            color="primary.500"
-            cursor="pointer"
-            outlined
-          />
+            width={40}
+            height={50}
+            borderBottomRightRadius="large"
+            borderTopRightRadius="large"
+            bg="white"
+          >
+            <Icon
+              name="arrow_back_ios"
+              size={30}
+              color="primary.500"
+              outlined
+            />
+          </Box>
         </Box>
       </Box>
       <Box
