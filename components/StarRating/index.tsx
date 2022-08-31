@@ -17,7 +17,7 @@ const StarRating: FC<StarRatingProps> = ({
   size = 24,
 }) => {
   const [activeStars, setActiveStars] = useState(rate)
-  const isRated = useRef(false) //used for checking whether the rating is done via click event, if it is, onMouseLeave don't reset activeStars state
+  const isRated = useRef(false) //used for checking whether the rating is done via click event, if it is, onMouseLeave doesn't reset activeStars state
   const isMounted = useRef(false) //used for skipping the useEffect with setActiveStars func. during the initial render
 
   useEffect(() => {

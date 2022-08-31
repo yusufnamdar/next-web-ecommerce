@@ -4,69 +4,79 @@ import { IRoute, routeList } from 'routeList'
 import { useState } from 'react'
 import Category from './Category'
 import Menu from './Menu'
+import { OverlayStyled } from './Menu/styled'
 
-let timer: any
+let timeout: any
 
 const clear = () => {
-  clearTimeout(timer)
-  timer = undefined
+  clearTimeout(timeout)
+  timeout = undefined
 }
 
 const Categorybar = () => {
   const [activeMenu, setActiveMenu] = useState<IRoute | undefined>()
 
   const toggleMenu = (menu?: IRoute) => {
-    //if there is an expanded menu, expand the new menu without using settimeout.
+    //when closing the menu, set the timeout  with 300ms, so there is enough time to cancel the closing by re-entering via onMouseEnter
+    if (!menu) {
+      timeout = setTimeout(() => {
+        setActiveMenu(menu)
+      }, 300)
+      return
+    }
+    //if there is an expanded menu, expand the new menu without using the settimeout.
     if (activeMenu) {
-      clear()
       setActiveMenu(menu)
       return
     }
     //if there is already a settimeout, clear the timeout first.
-    if (timer) {
+    if (timeout) {
       clear()
     }
     //when first hovered on a category, set the timeout with 200ms.
-    timer = setTimeout(() => {
+    timeout = setTimeout(() => {
       setActiveMenu(menu)
     }, 200)
   }
 
   return (
-    <Box
-      display="flex"
-      onMouseLeave={toggleMenu.bind(null, undefined)}
-      mx="auto"
-      maxWidth={1200}
-      position="relative"
-    >
-      <Box display="flex" className="no-scrollbar" gap={44} overflowX="auto">
-        {routeList.map((item) => {
-          const { menuId, icon, color, title } = item
-          const isExpanded = menuId === activeMenu?.menuId
+    <>
+      <Box
+        onMouseLeave={toggleMenu.bind(null, undefined)}
+        onMouseEnter={clear} //with onMouseOver, when hovering on child category comp. this clear function executes every time, that is why onMouseEnter is used.
+        mx="auto"
+        maxWidth={1200}
+        position="relative"
+      >
+        <Box display="flex" className="no-scrollbar" gap={44} overflowX="auto">
+          {routeList.map((item) => {
+            const { menuId, icon, color, title } = item
+            const isExpanded = menuId === activeMenu?.menuId
 
-          return (
-            <Category
-              key={menuId}
-              iconName={icon}
-              bg={color}
-              onMouseOver={toggleMenu.bind(null, item)}
-              isExpanded={isExpanded}
-            >
-              <Text
-                color="gray.400"
-                textAlign="center"
-                fontWeight="semi-bold"
-                fontSize={12}
+            return (
+              <Category
+                key={menuId}
+                iconName={icon}
+                bg={color}
+                onMouseEnter={toggleMenu.bind(null, item)}
+                isExpanded={isExpanded}
               >
-                {title}
-              </Text>
-            </Category>
-          )
-        })}
+                <Text
+                  color="gray.400"
+                  textAlign="center"
+                  fontWeight="semi-bold"
+                  fontSize={12}
+                >
+                  {title}
+                </Text>
+              </Category>
+            )
+          })}
+        </Box>
+        <Menu activeMenu={activeMenu} />
       </Box>
-      <Menu activeMenu={activeMenu} />
-    </Box>
+      <OverlayStyled isExpanded={!!activeMenu} />
+    </>
   )
 }
 
