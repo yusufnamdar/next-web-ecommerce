@@ -8,7 +8,7 @@ export const MenuStyled = styled.div<MenuStyledProps>`
   position: absolute;
   top: 100%;
   left: 0;
-  z-index: 2;
+  z-index: 3;
   padding: 24px;
   width: 100%;
   height: 320px;
@@ -63,4 +63,26 @@ export const MenuLinkStyled = styled.a<MenuLinkStyledProps>`
       }
     `,
   })}
+`
+export const OverlayStyled = styled.div<{ isExpanded: boolean }>`
+  position: absolute;
+  top: 193px;
+  left: 0;
+  width: 100%;
+  height: 3500px;
+  z-index: 2;
+  background-color: black;
+  transition: visibility 0.1s 0s, opacity 0.1s ease-in-out;
+
+  ${ifProp(
+    'isExpanded',
+    css`
+      visibility: visible;
+      opacity: 0.6;
+    `,
+    css`
+      visibility: hidden;
+      opacity: 0;
+    `
+  )}
 `

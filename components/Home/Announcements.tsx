@@ -93,7 +93,7 @@ const Announcements: FC<AnnouncementProps> = ({ height, ...props }) => {
               layout="fill"
             />
             <AnnouncementStyled
-              onMouseOver={stopTimer}
+              onMouseEnter={stopTimer}
               onMouseLeave={startTimer}
             >
               <Box position="absolute" height="100%" zIndex={1} p={24}>
