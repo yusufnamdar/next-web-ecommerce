@@ -54,3 +54,12 @@ type OptionType =
   | 'brand'
 
 type OptionValueType = 1 | 2 | 3 | 4 | 5 | 6 | 'S' | 'M' | 'L' | 35 | 40 | 45
+
+interface ICartItem {
+  _id: string
+  title: string
+  sku: ISku
+  quantity: number
+  image: string
+  optionType?: OptionType
+}
