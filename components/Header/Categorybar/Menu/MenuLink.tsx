@@ -11,12 +11,13 @@ const MenuLink: FC<MenuLinkProps> = ({
   variant = 'regular',
   prefetch = false,
   mb,
+  onClick,
   ...props
 }) => {
   return (
     // Need to put passHref prop, so it does not hurt the site's accessibility and SEO
     <Link {...props} prefetch={prefetch} passHref>
-      <MenuLinkStyled variant={variant} mb={mb}>
+      <MenuLinkStyled onClick={onClick} variant={variant} mb={mb}>
         {children}
       </MenuLinkStyled>
     </Link>

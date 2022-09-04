@@ -21,7 +21,7 @@ const Categorybar = () => {
     if (!menu) {
       timeout = setTimeout(() => {
         setActiveMenu(menu)
-      }, 300)
+      }, 200)
       return
     }
     //if there is an expanded menu, expand the new menu without using the settimeout.
@@ -37,6 +37,10 @@ const Categorybar = () => {
     timeout = setTimeout(() => {
       setActiveMenu(menu)
     }, 200)
+  }
+  //close the menu without 200ms delay
+  const closeMenu = () => {
+    setActiveMenu(undefined)
   }
 
   return (
@@ -73,7 +77,7 @@ const Categorybar = () => {
             )
           })}
         </Box>
-        <Menu activeMenu={activeMenu} />
+        <Menu activeMenu={activeMenu} closeMenu={closeMenu} />
       </Box>
       <OverlayStyled isExpanded={!!activeMenu} />
     </>

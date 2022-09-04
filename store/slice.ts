@@ -11,15 +11,17 @@ const root = createSlice({
     setDynoAction(state, action: PayloadAction<IRecord>) {
       return { ...state, ...action.payload }
     },
-    addToCart(state, action: PayloadAction<ICartItem>) {
+    //Add item to the cart
+    addToCart(state, action: PayloadAction<Omit<ICartItem, 'quantity'>>) {
       const item = state.cart.find((item) => item._id === action.payload._id)
 
       if (item) {
         item.quantity++
         return
       }
-      state.cart.unshift(action.payload)
+      state.cart.unshift({ ...action.payload, quantity: 1 })
     },
+    //Remove item from the cart
     removeFromCart(state, action: PayloadAction<{ _id: string }>) {
       const item = state.cart.find((item) => item._id === action.payload._id)
 

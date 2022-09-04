@@ -11,16 +11,20 @@ import { Button } from 'components/Button'
 import { Favorite } from 'components/Favorite'
 import type { GetStaticPaths, GetStaticProps, NextPage } from 'next'
 import { optionTextMap, optionValueMap } from 'utils/constants'
+import { Row } from 'components/global'
+import { useDispatch } from 'react-redux'
 import SkuOption from 'components/Product/SkuOption'
 import Gallery from 'components/Product/Gallery'
-import { Row } from 'components/global'
+import { addToCart } from 'store/slice'
 
 interface ProductPageProps {
   product: IProduct
 }
 
 const ProductPage: NextPage<ProductPageProps> = ({ product }) => {
+  const dispatch = useDispatch()
   const {
+    _id,
     reviews,
     seller,
     gender,
@@ -40,15 +44,26 @@ const ProductPage: NextPage<ProductPageProps> = ({ product }) => {
     sku && setSku(sku)
   }
 
+  const addItemToCart = () => {
+    dispatch(
+      addToCart({
+        _id,
+        title,
+        sku,
+        image: images[0],
+        optionType: options?.type,
+      })
+    )
+  }
+
   return (
     <Panel maxWidth={1000} mx="auto" p={20}>
       <Row gap={24}>
         <Gallery images={images} title={title} />
         <Box width={1}>
           <Text fontSize={11} color="gray.400" mb={5}>
-            {`${
-              gender ? gender[0].toUpperCase() + gender.substring(1) + ' ' : ''
-            }${category} category`}
+            {gender ? gender[0].toUpperCase() + gender.substring(1) + ' ' : ''}
+            {category} category
           </Text>
           <Text fontSize={20} fontWeight="semi-bold" mb="2px">
             {title}
@@ -112,6 +127,7 @@ const ProductPage: NextPage<ProductPageProps> = ({ product }) => {
               width={1}
               height={50}
               disabled={isSelectedOutOfStock}
+              onClick={addItemToCart}
               mr={15}
             >
               {isSelectedOutOfStock ? 'Out of Stock' : 'Add to Cart'}

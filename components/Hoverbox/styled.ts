@@ -1,10 +1,12 @@
+import { HTMLAttributes } from 'react'
 import styled, { css } from 'styled-components'
 import { layout, LayoutProps } from 'styled-system'
-import { prop, theme, switchProp } from 'styled-tools'
+import { prop, theme, switchProp, ifProp } from 'styled-tools'
 
 export type HoverboxContainerStyledProps = {
   colorOnHover?: string
-}
+  isVisible?: boolean
+} & HTMLAttributes<HTMLDivElement>
 
 export const HoverboxContainerStyled = styled.div<HoverboxContainerStyledProps>`
   display: inline-flex;
@@ -17,10 +19,17 @@ export const HoverboxContainerStyled = styled.div<HoverboxContainerStyledProps>`
     .hover-box {
       visibility: visible;
     }
-    & > * {
+    & > *:not(.hover-box) {
       color: ${prop('colorOnHover')};
     }
   }
+
+  ${ifProp(
+    'isVisible',
+    css`
+      visibility: visible;
+    `
+  )}
 `
 
 const variants = {
@@ -73,7 +82,8 @@ export const HoverboxStyled = styled.div<HoverboxStyledProps>`
   display: block;
   visibility: hidden;
   position: absolute;
-  z-index: 1;
+  cursor: default;
+  z-index: 4;
   box-shadow: 0 0 20px 0 ${theme('colors.gray.400')};
   background-color: ${theme('colors.panel')};
   border-radius: ${theme('radii.large')};

@@ -27,6 +27,15 @@ export const CategoryContainerStyled = styled.div<CategoryContainerStyledProps>`
     background-color: ${themeProp('bg', 'colors')};
   }
 
+  &:hover {
+    & > div:first-child {
+      border: 2px solid ${theme('colors.gray.400')};
+    }
+    &:after {
+      opacity: 1;
+    }
+  }
+
   ${ifProp(
     'isExpanded',
     css`
