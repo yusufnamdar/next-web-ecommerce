@@ -3,6 +3,7 @@ import { Icon } from 'components/Icon'
 import { Text } from 'components/Text'
 import { Button } from 'components/Button'
 import { Hoverbox } from 'components/Hoverbox'
+import CartHoverbox from './CartHoverbox'
 
 const Toolbar = () => {
   return (
@@ -33,28 +34,7 @@ const Toolbar = () => {
           Favorites
         </Text>
       </Hoverbox>
-      <Hoverbox
-        colorOnHover="#fbbf24"
-        variant="arrowBottomRight"
-        width={300}
-        content={
-          <Box p={16}>
-            <Text
-              textAlign="center"
-              color="gray.400"
-              fontSize={12}
-              fontWeight="semi-bold"
-            >
-              Your bag is empty.
-            </Text>
-          </Box>
-        }
-      >
-        <Icon name="shopping_cart" color="white" />
-        <Text ml={1} color="white" fontSize={13} fontWeight="semi-bold">
-          Cart
-        </Text>
-      </Hoverbox>
+      <CartHoverbox />
     </Box>
   )
 }

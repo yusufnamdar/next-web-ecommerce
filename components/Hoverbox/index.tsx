@@ -7,7 +7,7 @@ import {
   HoverboxStyledProps,
 } from './styled'
 
-interface HoverboxProps
+export interface HoverboxProps
   extends HoverboxStyledProps,
     HoverboxContainerStyledProps {
   children?: ReactNode
@@ -19,15 +19,16 @@ const Hoverbox: FC<HoverboxProps> = ({
   colorOnHover,
   content,
   variant = 'arrowBottomCenter',
+  width,
   ...props
 }) => {
   return (
-    <HoverboxContainerStyled colorOnHover={colorOnHover}>
+    <HoverboxContainerStyled colorOnHover={colorOnHover} {...props}>
       {children}
       {!!content && (
-        <HoverboxStyled className="hover-box" variant={variant} {...props}>
+        <HoverboxStyled className="hover-box" variant={variant} width={width}>
           {content}
-          {variant?.startsWith('arrow') && (
+          {variant.startsWith('arrow') && (
             <span>
               <Icon name="play_arrow" color="panel" size={18} />
             </span>
