@@ -17,28 +17,33 @@ const Categorybar = () => {
   const [activeMenu, setActiveMenu] = useState<IRoute | undefined>()
 
   const toggleMenu = (menu?: IRoute) => {
-    //when closing the menu, set the timeout  with 300ms, so there is enough time to cancel the closing by re-entering via onMouseEnter
+    //if there is already a settimeout, clear the timeout first.
+    if (timeout) {
+      clear()
+    }
+    //Cancel openning the menu by clearing the timeout and early return
+    if (!activeMenu && !menu) {
+      return
+    }
+    //when closing the menu, set the timeout  with 200ms, so there is enough time to cancel the closing by re-entering via onMouseEnter
     if (!menu) {
       timeout = setTimeout(() => {
         setActiveMenu(menu)
       }, 200)
       return
     }
-    //if there is an expanded menu, expand the new menu without using the settimeout.
+    //if there is an already expanded menu, expand the new menu without using the settimeout.
     if (activeMenu) {
       setActiveMenu(menu)
       return
-    }
-    //if there is already a settimeout, clear the timeout first.
-    if (timeout) {
-      clear()
     }
     //when first hovered on a category, set the timeout with 200ms.
     timeout = setTimeout(() => {
       setActiveMenu(menu)
     }, 200)
   }
-  //close the menu without 200ms delay
+
+  //close the menu without 200ms delay for route changes
   const closeMenu = () => {
     setActiveMenu(undefined)
   }

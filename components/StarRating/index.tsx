@@ -18,17 +18,10 @@ const StarRating: FC<StarRatingProps> = ({
 }) => {
   const [activeStars, setActiveStars] = useState(rate)
   const isRated = useRef(false) //used for checking whether the rating is done via click event, if it is, onMouseLeave doesn't reset activeStars state
-  const isMounted = useRef(false) //used for skipping the useEffect with setActiveStars func. during the initial render
 
   useEffect(() => {
-    if (isMounted.current) {
-      setActiveStars(rate)
-    }
+    setActiveStars(rate)
   }, [rate])
-
-  useEffect(() => {
-    isMounted.current = true
-  }, [])
 
   const handleMouseOver = (index: number) => {
     setActiveStars(index + 1)
