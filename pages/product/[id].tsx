@@ -49,6 +49,7 @@ const ProductPage: NextPage<ProductPageProps> = ({ product }) => {
       addToCart({
         _id,
         title,
+        seller,
         sku,
         image: images[0],
         optionType: options?.type,
