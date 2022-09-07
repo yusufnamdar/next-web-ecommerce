@@ -13,7 +13,9 @@ const root = createSlice({
     },
     //Add item to the cart
     addToCart(state, action: PayloadAction<Omit<ICartItem, 'quantity'>>) {
-      const item = state.cart.find((item) => item._id === action.payload._id)
+      const item = state.cart.find(
+        (item) => item.sku.sku === action.payload.sku.sku
+      )
 
       if (item) {
         item.quantity++
@@ -22,14 +24,18 @@ const root = createSlice({
       state.cart.unshift({ ...action.payload, quantity: 1 })
     },
     //Remove item from the cart
-    removeFromCart(state, action: PayloadAction<{ _id: string }>) {
-      const item = state.cart.find((item) => item._id === action.payload._id)
+    removeFromCart(state, action: PayloadAction<{ sku: string }>) {
+      const item = state.cart.find(
+        (item) => item.sku.sku === action.payload.sku
+      )
 
       if (item && item.quantity > 1) {
         item.quantity--
         return
       }
-      state.cart = state.cart.filter((item) => item._id !== action.payload._id)
+      state.cart = state.cart.filter(
+        (item) => item.sku.sku !== action.payload.sku
+      )
     },
   },
 })

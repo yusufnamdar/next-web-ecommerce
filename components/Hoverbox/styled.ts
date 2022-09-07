@@ -78,7 +78,7 @@ export const HoverboxStyled = styled.div<HoverboxStyledProps>`
   display: block;
   visibility: hidden;
   position: absolute;
-  cursor: default;
+  cursor: auto;
   z-index: 99;
   box-shadow: 0 0 20px 0 ${theme('colors.gray.400')};
   background-color: ${theme('colors.panel')};

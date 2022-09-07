@@ -14,7 +14,7 @@ export const sharedTheme = {
     white: '#fff',
     emerald: { 300: '#6ee7b7' },
     rose: { 300: '#fda4af', 400: '#fb7185' },
-    teal: { 300: '#5eead4' },
+    teal: { 300: '#5eead4', 600: '#0d9488' },
     primary: {
       50: '#fffbeb',
       300: '#fcd34d',

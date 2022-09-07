@@ -1,42 +1,38 @@
 import { Box } from 'components/Box'
 import { Text } from 'components/Text'
-import { FC, useEffect, useMemo, useState } from 'react'
+import { FC, useEffect, useState } from 'react'
 import { optionTextMap } from 'utils/constants'
 import { Button } from 'components/Button'
-import Image from 'next/image'
-import Router from 'next/router'
 import { NextLink } from 'components/NextLink'
 import { Icon } from 'components/Icon'
 import { SlideBoxStyled } from './styled'
+import Router from 'next/router'
+import Image from 'next/image'
 
 interface CartProps {
   items: ICartItem[]
+  totalQuantity: number
 }
 
-const Cart: FC<CartProps> = ({ items }) => {
-  const [showSlideDown, setShowSlideDown] = useState(false)
-  const [showSlideUpwards, setShowSlideUpwards] = useState(false)
-
-  const totalQuantity = useMemo(
-    () =>
-      items.reduce((accumulator, current) => {
-        return accumulator + current.quantity
-      }, 0),
-    [items]
-  )
+const Cart: FC<CartProps> = ({ items, totalQuantity }) => {
+  const [showScrollDown, setShowScrollDown] = useState(false)
+  const [showScrollUpwards, setShowScrollUpwards] = useState(false)
 
   useEffect(() => {
     const boxRef = document.querySelector('.cart-box')
     const clientHeight = boxRef?.clientHeight || 0
     const scrollHeight = boxRef?.scrollHeight || 0
     if (scrollHeight > clientHeight) {
-      setShowSlideDown(true)
+      boxRef?.scrollTo({ top: 0 })
+      setShowScrollDown(true)
+      setShowScrollUpwards(false)
     } else {
-      setShowSlideDown(false)
+      setShowScrollDown(false)
+      setShowScrollUpwards(false)
     }
-  }, [items.length])
+  }, [items])
 
-  if (!items.length) {
+  if (!totalQuantity) {
     return (
       <Box p={16}>
         <Text
@@ -45,28 +41,44 @@ const Cart: FC<CartProps> = ({ items }) => {
           fontSize={12}
           fontWeight="semi-bold"
         >
-          Your bag is empty.
+          Your cart is empty.
         </Text>
       </Box>
     )
   }
 
-  const handleSlideDown = () => {
+  const handleScrollDown = () => {
     const boxRef = document.querySelector('.cart-box')
-    boxRef?.scrollBy({ top: 120, behavior: 'smooth' })
-    if (boxRef?.scrollTop === boxRef?.scrollHeight || 0 - 120) {
-      setShowSlideDown(false)
+    const scrollTop = boxRef?.scrollTop || 0
+    const scrollHeight = boxRef?.scrollHeight || 0
+    const clientHeight = boxRef?.clientHeight || 0
+
+    //Handle scroll down via quick clicking
+    const top =
+      scrollTop % 118 === 0 ? 118 : 118 + 118 - ((scrollTop / 118) % 1) * 118
+
+    boxRef?.scrollBy({ top, behavior: 'smooth' })
+    //scrollTop + clientHeight + 118(item box) === scrollHeight => true
+    if (scrollTop + clientHeight + 118 > scrollHeight - 118) {
+      setShowScrollDown(false)
     }
-    setShowSlideUpwards(true)
+    setShowScrollUpwards(true)
   }
 
-  const handleSlideUpwards = () => {
+  const handleScrollUpwards = () => {
     const boxRef = document.querySelector('.cart-box')
-    boxRef?.scrollBy({ top: -120, behavior: 'smooth' })
-    if (boxRef?.scrollTop === 0) {
-      setShowSlideUpwards(false)
+    const scrollTop = boxRef?.scrollTop || 0
+    const clientHeight = boxRef?.clientHeight || 0
+
+    //Handle scroll up via quick clicking
+    const top =
+      scrollTop % 118 === 0 ? -118 : -118 - ((scrollTop / 118) % 1) * 118
+
+    boxRef?.scrollBy({ top, behavior: 'smooth' })
+    if (scrollTop < clientHeight) {
+      setShowScrollUpwards(false)
     }
-    setShowSlideDown(true)
+    setShowScrollDown(true)
   }
 
   const navigateToCart = () => {
@@ -75,14 +87,15 @@ const Cart: FC<CartProps> = ({ items }) => {
 
   return (
     <>
-      <Box hidden={showSlideUpwards}>
-        <Text pl={16} pt={16} fontSize={14}>
+      <Box hidden={showScrollUpwards}>
+        <Text className="no-user-select" pl={16} pt={16} fontSize={14}>
           Shopping Cart ({totalQuantity} Item{totalQuantity > 1 ? 's' : ''})
         </Text>
       </Box>
       <SlideBoxStyled
-        hidden={!showSlideUpwards}
-        onClick={handleSlideUpwards}
+        className="no-user-select"
+        hidden={!showScrollUpwards}
+        onClick={handleScrollUpwards}
         display="flex"
         justifyContent="center"
         alignItems="center"
@@ -94,14 +107,18 @@ const Cart: FC<CartProps> = ({ items }) => {
         <Icon name="expand_less" color="gray.400" size={30} />
       </SlideBoxStyled>
       <Box className="cart-box" maxHeight={236} overflow="hidden">
-        {items.map((item) => {
+        {items.map((item, index) => {
           const { _id, sku, optionType, title, image, quantity } = item
           return (
-            <NextLink key={_id} href={`/product/${_id}`}>
+            <NextLink key={sku.sku} href={`/product/${_id}`}>
               <Box
+                className="no-user-select"
                 display="flex"
                 p={16}
-                borderBottomStyle="solid"
+                height={118}
+                borderBottomStyle={
+                  index !== items.length - 1 ? 'solid' : 'none'
+                }
                 borderBottomWidth={1}
                 borderBottomColor="gray.200"
               >
@@ -153,19 +170,25 @@ const Cart: FC<CartProps> = ({ items }) => {
           )
         })}
       </Box>
-      <SlideBoxStyled
-        hidden={!showSlideDown}
-        onClick={handleSlideDown}
-        display="flex"
-        justifyContent="center"
-        alignItems="center"
+      <Box
         height={32}
+        hidden={items.length <= 2}
         borderBottomStyle="solid"
         borderBottomWidth={1}
         borderBottomColor="gray.200"
       >
-        <Icon name="expand_more" color="gray.400" size={30} />
-      </SlideBoxStyled>
+        <SlideBoxStyled
+          className="no-user-select"
+          hidden={!showScrollDown}
+          onClick={handleScrollDown}
+          display="flex"
+          justifyContent="center"
+          alignItems="center"
+          height="100%"
+        >
+          <Icon name="expand_more" color="gray.400" size={30} />
+        </SlideBoxStyled>
+      </Box>
       <Box display="flex" justifyContent="space-between" px={16} py={10}>
         <Button onClick={navigateToCart} width={130} height={35} fontSize={14}>
           Go to cart

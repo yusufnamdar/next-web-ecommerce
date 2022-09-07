@@ -28,6 +28,7 @@ const Gallery: FC<GalleryProps> = ({ images, title }) => {
       minWidth={400}
     >
       <Box
+        className="no-user-select"
         position="relative"
         width={400}
         height={600}
@@ -109,7 +110,7 @@ const Gallery: FC<GalleryProps> = ({ images, title }) => {
           return (
             <Box
               key={idx}
-              className="pointer"
+              className="pointer no-user-select"
               position="relative"
               width={44}
               height={64}
