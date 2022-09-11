@@ -75,6 +75,20 @@ export const GlobalStyle = createGlobalStyle`
   .capitalize {
     text-transform: capitalize;
   }
+
+  .hover-primary-color {
+    transition: color 0.2s ease-in-out;
+    &:hover {
+        color: ${theme('colors.primary.500')};
+    }
+  }
+
+  .hover-rose-color {
+    transition: color 0.2s ease-in-out;
+    &:hover {
+        color: ${theme('colors.rose.500')};
+    }
+  }
 `
 export const Row = styled(Box)`
   display: flex;

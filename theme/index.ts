@@ -13,7 +13,7 @@ export const sharedTheme = {
     yellow: '#ffc82c',
     white: '#fff',
     emerald: { 300: '#6ee7b7' },
-    rose: { 300: '#fda4af', 400: '#fb7185' },
+    rose: { 300: '#fda4af', 400: '#fb7185', 500: '#f43f5e' },
     teal: { 300: '#5eead4', 600: '#0d9488' },
     primary: {
       50: '#fffbeb',
@@ -23,7 +23,7 @@ export const sharedTheme = {
       600: '#ea580c',
     },
     danger: { 300: '#fca5a5', 400: '#f87171' },
-    gray: { 200: '#e5e7eb', 300: '#d1d5db', 400: '#6b7280' },
+    gray: { 100: '#f3f4f6', 200: '#e5e7eb', 300: '#d1d5db', 400: '#6b7280' },
     slate: { 100: '#f1f5f9', 300: '#cbd5e1' },
     cyan: {
       1000: '#0B2833',

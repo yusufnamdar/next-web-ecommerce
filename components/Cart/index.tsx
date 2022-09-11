@@ -5,7 +5,7 @@ import { optionTextMap } from 'utils/constants'
 import { Button } from 'components/Button'
 import { NextLink } from 'components/NextLink'
 import { Icon } from 'components/Icon'
-import { SlideBoxStyled } from './styled'
+import { SlideBoxStyled } from '../Header/Toolbar/styled'
 import Router from 'next/router'
 import Image from 'next/image'
 
@@ -201,4 +201,4 @@ const Cart: FC<CartProps> = ({ items, totalQuantity }) => {
   )
 }
 
-export default Cart
+export { Cart }

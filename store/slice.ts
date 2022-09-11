@@ -7,11 +7,11 @@ const root = createSlice({
   name: 'root',
   initialState,
   reducers: {
-    //For simple adding and updating any field of the store
+    //For simple adding or updating any field of the store
     setDynoAction(state, action: PayloadAction<IRecord>) {
       return { ...state, ...action.payload }
     },
-    //Add item to the cart
+    //Add one item to the cart or increment an item quantity
     addToCart(state, action: PayloadAction<Omit<ICartItem, 'quantity'>>) {
       const item = state.cart.find(
         (item) => item.sku.sku === action.payload.sku.sku
@@ -23,23 +23,48 @@ const root = createSlice({
       }
       state.cart.unshift({ ...action.payload, quantity: 1 })
     },
-    //Remove item from the cart
-    removeFromCart(state, action: PayloadAction<{ sku: string }>) {
+    //Update the quantity of already existing cart item
+    updateQuantity(
+      state,
+      action: PayloadAction<{ sku: string; quantity: number }>
+    ) {
+      const item = state.cart.find(
+        (item) => item.sku.sku === action.payload.sku
+      )
+      if (item) {
+        item.quantity = action.payload.quantity
+      }
+    },
+    //Decrement an item quantity
+    decrementQuantity(state, action: PayloadAction<{ sku: string }>) {
       const item = state.cart.find(
         (item) => item.sku.sku === action.payload.sku
       )
 
       if (item && item.quantity > 1) {
         item.quantity--
-        return
       }
+    },
+    //Remove one item from the cart
+    removeItem(state, action: PayloadAction<{ sku: string }>) {
       state.cart = state.cart.filter(
         (item) => item.sku.sku !== action.payload.sku
       )
     },
+    //Empty the cart
+    emptyCart(state) {
+      state.cart = []
+    },
   },
 })
 
-export const { addToCart, setDynoAction } = root.actions
+export const {
+  addToCart,
+  setDynoAction,
+  updateQuantity,
+  decrementQuantity,
+  removeItem,
+  emptyCart,
+} = root.actions
 
 export default root.reducer

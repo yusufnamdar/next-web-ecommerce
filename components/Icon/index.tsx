@@ -10,21 +10,15 @@ interface IconProps extends IconStyledProps, HTMLAttributes<HTMLSpanElement> {
 
 const Icon: FC<IconProps> = ({
   name,
+  className,
   size = 24,
-  color,
   outlined,
-  cursor,
   ...props
 }) => {
-  const cs = outlined ? 'material-icons-outlined' : 'material-icons'
+  const iconClass = outlined ? 'material-icons-outlined' : 'material-icons'
+  const cs = className ? `${iconClass} ${className}` : iconClass
   return (
-    <IconStyled
-      className={cs}
-      fontSize={size}
-      color={color}
-      cursor={cursor}
-      {...props}
-    >
+    <IconStyled className={cs} fontSize={size} {...props}>
       {name}
     </IconStyled>
   )
