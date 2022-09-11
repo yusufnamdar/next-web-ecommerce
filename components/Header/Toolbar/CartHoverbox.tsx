@@ -6,13 +6,14 @@ import { useRouter } from 'next/router'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { getCart } from 'store/selectors'
-import Cart from './Cart'
+import { Cart } from 'components/Cart'
 
 const CartHoverbox = () => {
   const items = useSelector(getCart)
   const [isVisible, setIsVisible] = useState(false)
-  const router = useRouter()
   const isMounted = useRef(false) //used for skipping the setIsVisible hook inside the useEffect during the initial render
+  const router = useRouter()
+  const isCartPage = router.pathname === '/cart'
 
   //if the array is empty, it returns 0
   const totalQuantity = useMemo(
@@ -24,7 +25,7 @@ const CartHoverbox = () => {
   )
 
   useEffect(() => {
-    if (isMounted.current) {
+    if (isMounted.current && !isCartPage) {
       setIsVisible(true) //Make the cart hover box visible, everytime the cart items are changed
     }
   }, [items])
@@ -47,7 +48,9 @@ const CartHoverbox = () => {
       variant="arrowBottomRight"
       isVisible={isVisible}
       width={300}
-      content={<Cart items={items} totalQuantity={totalQuantity} />}
+      content={
+        !isCartPage && <Cart items={items} totalQuantity={totalQuantity} />
+      }
       toggleVisibility={toggleVisibility}
       controlVisibility
     >
@@ -56,7 +59,7 @@ const CartHoverbox = () => {
         Cart
       </Text>
       <Box
-        hidden={!totalQuantity}
+        hidden={!totalQuantity || isCartPage}
         position="absolute"
         top={12}
         left="3px"
