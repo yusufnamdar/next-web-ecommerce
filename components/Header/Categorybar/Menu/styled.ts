@@ -64,25 +64,3 @@ export const MenuLinkStyled = styled.a<MenuLinkStyledProps>`
     `,
   })}
 `
-export const OverlayStyled = styled.div<{ isExpanded: boolean }>`
-  position: absolute;
-  top: 192px;
-  left: 0;
-  width: 100%;
-  height: 3500px;
-  z-index: 2;
-  background-color: black;
-  transition: opacity 0.2s ease-in-out;
-
-  ${ifProp(
-    'isExpanded',
-    css`
-      visibility: visible;
-      opacity: 0.6;
-    `,
-    css`
-      visibility: hidden;
-      opacity: 0;
-    `
-  )}
-`

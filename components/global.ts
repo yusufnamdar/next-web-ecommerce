@@ -89,6 +89,13 @@ export const GlobalStyle = createGlobalStyle`
         color: ${theme('colors.rose.500')};
     }
   }
+
+  .hover-cyan-bg{
+    transition: background-color 0.2s ease-in-out;
+    &:hover {
+        background-color: ${theme('colors.cyan.800')};
+    }
+  }
 `
 export const Row = styled(Box)`
   display: flex;
