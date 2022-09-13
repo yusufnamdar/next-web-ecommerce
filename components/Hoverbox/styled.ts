@@ -22,6 +22,7 @@ export const HoverboxContainerStyled = styled.div<HoverboxContainerStyledProps>`
         visibility: visible;
       }
       & > *:not(.hover-box) {
+        transition: color 0.2s ease-in-out;
         color: ${prop('colorOnHover')};
       }
     `

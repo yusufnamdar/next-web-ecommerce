@@ -2,9 +2,9 @@ import { Box } from 'components/Box'
 import { Text } from 'components/Text'
 import { IRoute, routeList } from 'routeList'
 import { useState } from 'react'
+import { Overlay } from 'components/Overlay'
 import Category from './Category'
 import Menu from './Menu'
-import { OverlayStyled } from './Menu/styled'
 
 let timeout: any
 
@@ -84,7 +84,7 @@ const Categorybar = () => {
         </Box>
         <Menu activeMenu={activeMenu} closeMenu={closeMenu} />
       </Box>
-      <OverlayStyled isExpanded={!!activeMenu} />
+      <Overlay isExpanded={!!activeMenu} top={192} />
     </>
   )
 }

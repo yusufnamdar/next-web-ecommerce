@@ -59,7 +59,7 @@ export const BorderAnimationStyled = styled.div`
     left: 0;
     right: 0;
     bottom: 0;
-    border: 2px solid ${theme('colors.rose.300')};
+    border: 5px solid ${theme('colors.primary.500')};
     transition: all 0.5s;
     animation: clippath 3s infinite linear;
   }
