@@ -7,7 +7,6 @@ import Image from 'next/image'
 
 const Footer = () => {
   const scrollTop = () => {
-    console.log('scroll')
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }
   return (
@@ -41,7 +40,8 @@ const Footer = () => {
             Hello 👋, thank you for checking out my e-commerce project. It took
             me around a month to get to this stage. It was a good oppurtunity to
             learn new and cool things, as well as implementing what I already
-            knew. I gave it my all and continue to do so for the new features.
+            knew. I gave it my all and will continue to do so for the new
+            features.
           </Text>
         </Box>
         <Box display="flex" flexDirection="column" alignItems="flex-start">

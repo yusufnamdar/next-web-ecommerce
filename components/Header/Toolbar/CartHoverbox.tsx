@@ -13,6 +13,7 @@ const CartHoverbox = () => {
   const [isVisible, setIsVisible] = useState(false)
   const isMounted = useRef(false) //used for skipping the setIsVisible hook inside the useEffect during the initial render
   const router = useRouter()
+
   const isCartPage = router.pathname === '/cart'
 
   //if the array is empty, it returns 0
