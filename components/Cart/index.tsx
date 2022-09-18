@@ -30,7 +30,7 @@ const Cart: FC<CartProps> = ({ items, totalQuantity }) => {
       setShowScrollDown(false)
       setShowScrollUpwards(false)
     }
-  }, [items])
+  }, [items.length])
 
   if (!totalQuantity) {
     return (

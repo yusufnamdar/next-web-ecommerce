@@ -218,7 +218,8 @@ const CartPage = () => {
                           $ {(sku.price * quantity).toLocaleString()}
                         </Text>
                         <Icon
-                          className="hover-primary-color pointer"
+                          className="hover-primary-color"
+                          cursor="pointer"
                           name="delete"
                           color="gray.400"
                           onClick={onItemRemove.bind(null, sku.sku)}

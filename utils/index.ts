@@ -45,7 +45,7 @@ export const themeProp =
     const arr = props[key]?.toString()?.split('.') //ex: key="bg" => gray.400 => ["gray","400"]
     let theme = props.theme[themeKey] //ex: themeKey="colors"
 
-    arr?.forEach((i: string) => {
+    arr?.map((i: string) => {
       theme = theme?.[i]
     })
     if (!theme) return props[key]
@@ -54,4 +54,13 @@ export const themeProp =
 
 export const getSerializableData = (obj: any) => {
   return JSON.parse(JSON.stringify(obj))
+}
+
+export const hasActionMatch = (actions: IRecord[], target: any) => {
+  for (const action of actions) {
+    if (action?.match(target)) {
+      return true
+    }
+  }
+  return false
 }
