@@ -28,7 +28,9 @@ export const hydrateStore =
   (): ThunkAction<void, RootState, unknown, AnyAction> => (dispatch) => {
     const namstoreStorage = localStorage.getItem('namstoreStorage')
     if (namstoreStorage) {
-      dispatch(setDynoAction({ ...JSON.parse(namstoreStorage) }))
+      dispatch(
+        setDynoAction({ ...JSON.parse(namstoreStorage), hasHydrated: true })
+      )
     }
   }
 

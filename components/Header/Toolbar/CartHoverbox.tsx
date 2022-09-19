@@ -5,13 +5,14 @@ import { Text } from 'components/Text'
 import { useRouter } from 'next/router'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { useSelector } from 'react-redux'
-import { getCart } from 'store/selectors'
+import { getCart, getHydrate } from 'store/selectors'
 import { Cart } from 'components/Cart'
 
 const CartHoverbox = () => {
   const items = useSelector(getCart)
+  const hasHydrated = useSelector(getHydrate)
   const [isVisible, setIsVisible] = useState(false)
-  const isMounted = useRef(false) //used for skipping the setIsVisible hook inside the useEffect during the initial render
+  const isMounted = useRef(false)
   const router = useRouter()
 
   const isCartPage = router.pathname === '/cart'
@@ -32,12 +33,12 @@ const CartHoverbox = () => {
   }, [items])
 
   useEffect(() => {
-    setIsVisible(false) //Make the cart hover box invisible, when the page is changed
-  }, [router.asPath])
+    isMounted.current = hasHydrated //used for skipping the setIsVisible hook inside the useEffect during redux store hydration
+  }, [hasHydrated])
 
   useEffect(() => {
-    isMounted.current = true
-  }, [])
+    setIsVisible(false) //Make the cart hover box invisible, when the page is changed
+  }, [router.asPath])
 
   const toggleVisibility = (visible: boolean) => {
     setIsVisible(visible)
