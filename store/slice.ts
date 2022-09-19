@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
 
-const initialState = { cart: [] as ICartItem[] }
+const initialState = { cart: [] as ICartItem[], hasHydrated: false }
 
 const root = createSlice({
   name: 'root',
