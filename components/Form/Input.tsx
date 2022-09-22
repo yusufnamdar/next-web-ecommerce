@@ -1,4 +1,10 @@
-import { FC, InputHTMLAttributes, ReactNode, MouseEvent } from 'react'
+import {
+  FC,
+  InputHTMLAttributes,
+  ReactNode,
+  MouseEvent,
+  forwardRef,
+} from 'react'
 import { LayoutProps } from 'styled-system'
 import { noop } from 'utils'
 import {
@@ -19,44 +25,50 @@ interface InputProps
   minWidth?: LayoutProps['minWidth']
 }
 
-const Input: FC<InputProps> = ({
-  variant = 'primary',
-  width = 1,
-  height = 38,
-  minWidth,
-  icon,
-  onClickIcon = noop,
-  isIconBg = false,
-  disabled = false,
-  ...props
-}) => {
-  const onClick = (e: MouseEvent<HTMLSpanElement>) => {
-    if (disabled) return
-    onClickIcon(e)
-  }
+const Input: FC<InputProps> = forwardRef<HTMLInputElement, InputProps>(
+  (
+    {
+      variant = 'primary',
+      width = 1,
+      height = 38,
+      minWidth,
+      icon,
+      onClickIcon = noop,
+      isIconBg = false,
+      disabled = false,
+      ...props
+    },
+    ref
+  ) => {
+    const onClick = (e: MouseEvent<HTMLSpanElement>) => {
+      if (disabled) return
+      onClickIcon(e)
+    }
 
-  return (
-    <WrapperStyled width={width} height={height} minWidth={minWidth}>
-      <InputStyled
-        variant={variant}
-        pr={icon ? 60 : 16}
-        spellCheck={false}
-        autoComplete="off"
-        disabled={disabled}
-        {...props}
-      />
-      {icon && (
-        <IconContainerStyled
-          onClick={onClick}
+    return (
+      <WrapperStyled width={width} height={height} minWidth={minWidth}>
+        <InputStyled
           variant={variant}
-          isIconBg={!disabled && isIconBg}
+          pr={icon ? 60 : 16}
+          spellCheck={false}
+          autoComplete="off"
           disabled={disabled}
-        >
-          {icon}
-        </IconContainerStyled>
-      )}
-    </WrapperStyled>
-  )
-}
+          {...props}
+          ref={ref}
+        />
+        {icon && (
+          <IconContainerStyled
+            onClick={onClick}
+            variant={variant}
+            isIconBg={!disabled && isIconBg}
+            disabled={disabled}
+          >
+            {icon}
+          </IconContainerStyled>
+        )}
+      </WrapperStyled>
+    )
+  }
+)
 
 export { Input }

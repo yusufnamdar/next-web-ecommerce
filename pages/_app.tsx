@@ -9,7 +9,7 @@ import Head from 'next/head'
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
-      <Head>
+      <Head key="myapp">
         <title>Namstore - Online Shopping</title>
       </Head>
       <Provider store={store}>

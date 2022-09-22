@@ -106,7 +106,7 @@ const Footer = () => {
           </Text>
           <a href="tel:+905071234567" className="hover-primary-color">
             <Box display="flex" alignItems="center" mb={20} gap={6}>
-              <Icon name="call" /> +90-507-123-45-67 (fake)
+              <Icon name="call" /> +91-234-567-89-99
             </Box>
           </a>
           <a
