@@ -5,6 +5,7 @@ import { ifNotProp, ifProp, prop, switchProp, theme } from 'styled-tools'
 export interface InputStyledProps {
   variant?: 'primary' | 'danger'
   pr?: number
+  hasFocus?: boolean
 }
 
 export const WrapperStyled = styled.div<LayoutProps>`
@@ -14,7 +15,6 @@ export const WrapperStyled = styled.div<LayoutProps>`
 `
 
 export const InputStyled = styled.input<InputStyledProps>`
-  //todo:refactor may be needed
   width: 100%;
   height: 100%;
   font-size: 15px;
@@ -28,10 +28,8 @@ export const InputStyled = styled.input<InputStyledProps>`
     color: ${theme('colors.gray.400')};
   }
 
-  :enabled:focus {
-    ::placeholder {
-      font-weight: ${theme('fontWeights.semi-bold')};
-    }
+  :enabled:focus::placeholder {
+    font-weight: ${theme('fontWeights.semi-bold')};
   }
 
   ${switchProp('variant', {
@@ -45,6 +43,18 @@ export const InputStyled = styled.input<InputStyledProps>`
       box-shadow: 0px 0px 0px 3px ${theme(`colors.danger.400`)};
     `,
   })}
+
+  ${ifProp(
+    'hasFocus',
+    css`
+      :enabled {
+        box-shadow: 0px 0px 0px 3px ${theme(`colors.primary.400`)};
+        ::placeholder {
+          font-weight: ${theme('fontWeights.semi-bold')};
+        }
+      }
+    `
+  )}
 
   :disabled {
     background-color: ${theme('colors.gray.300')};

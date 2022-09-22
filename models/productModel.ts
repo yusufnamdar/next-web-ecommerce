@@ -40,7 +40,33 @@ const productSchema = new Schema<IProduct>(
 )
 
 productSchema.statics.buildQuery = function (req) {
-  const query: Query<any, any> = this.find() // Mongoose will not execute a query until exec has been called
+  const query: Query<any, any> = this.find({}) // Mongoose will not execute a query until exec has been called
+  if (req.s) {
+    const searchKey = req.s
+    const multiple = searchKey.split('+')
+    if (multiple.length === 1) {
+      query.or([
+        { gender: new RegExp(`^${searchKey}$`, 'i') },
+        { category: new RegExp(`^${searchKey}`, 'i') },
+        { title: new RegExp(`\\b${searchKey}`, 'i') },
+      ])
+    } else {
+      query.and([
+        {
+          gender: {
+            $in: multiple.map((i: string) => new RegExp(`^${i}$`, 'i')),
+          },
+        },
+        {
+          category: {
+            $in: multiple.map((i: string) => new RegExp(`^${i}`, 'i')),
+          },
+        },
+      ])
+    }
+    return query
+  }
+
   Object.entries(req).map(([key, value]: [string, any]) => {
     if (!value) return
 
