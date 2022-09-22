@@ -31,6 +31,8 @@ export const hydrateStore =
       dispatch(
         setDynoAction({ ...JSON.parse(namstoreStorage), hasHydrated: true })
       )
+    } else {
+      dispatch(setDynoAction({ hasHydrated: true }))
     }
   }
 
