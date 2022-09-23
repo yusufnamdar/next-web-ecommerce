@@ -43,6 +43,14 @@ export const GlobalStyle = createGlobalStyle`
     outline: none;
   }
 
+  #nprogress .bar{
+    background-color: ${theme('colors.primary.400')};
+  }
+    
+  #nprogress .peg {
+    box-shadow: none;
+  }
+
   .pointer {
     cursor: pointer;
   }
