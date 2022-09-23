@@ -44,13 +44,13 @@
 
 3.  **Start the app in production mode**
 
-        ```shell
-        # Build the app
-        yarn build
+    ```shell
+    # Build the app
+    yarn build
 
-        # Start the app at localhost:3000
-        yarn start
-        ```
+    # Start the app at localhost:3000
+    yarn start
+    ```    
 
 You can find the working example [here](https://namstore.vercel.app).
 
