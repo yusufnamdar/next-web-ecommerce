@@ -19,10 +19,13 @@
 - 👩 Woman
 - 🧒 Child
 
-#
+## 📟 Tech Stack
+
+![Tech Stack](https://skillicons.dev/icons?i=typescript,react,redux,nextjs,mongodb,styledcomponents)
+
+---
 
 <img src="GIF/preview.gif" />
-
 
 ## 📖 Getting Started
 
@@ -50,7 +53,7 @@
 
     # Start the app at localhost:3000
     yarn start
-    ```    
+    ```
 
 You can find the working example [here](https://namstore.vercel.app).
 
