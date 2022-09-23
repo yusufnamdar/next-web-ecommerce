@@ -23,7 +23,6 @@
 
 <img src="GIF/preview.gif" />
 
-#
 
 ## 📖 Getting Started
 
@@ -54,8 +53,6 @@
         ```
 
 You can find the working example [here](https://namstore.vercel.app).
-
-#
 
 ## 🧭 Roadmap
 
