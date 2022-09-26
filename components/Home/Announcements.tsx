@@ -1,8 +1,8 @@
 import { Box, BoxProps } from 'components/Box'
 import { FC, useState, useEffect } from 'react'
 import Image from 'next/image'
+import Router from 'next/router'
 import { Text } from 'components/Text'
-import { NextLink } from 'components/NextLink'
 import { Button } from 'components/Button'
 import {
   AnnouncementContainerStyled,
@@ -111,9 +111,9 @@ const Announcements: FC<AnnouncementProps> = ({ height, ...props }) => {
                     Don't compromise on style! <br />
                     Get 50% off for new arrivals
                   </Text>
-                  <NextLink href={item.href}>
-                    <Button width={1}>SHOP NOW</Button>
-                  </NextLink>
+                  <Button width={1} onClick={() => Router.push(item.href)}>
+                    SHOP NOW
+                  </Button>
                 </Box>
               </Box>
               <Image

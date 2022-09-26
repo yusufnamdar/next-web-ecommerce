@@ -1,14 +1,19 @@
 import { Box } from 'components/Box'
 import { Row } from 'components/global'
 import { Icon } from 'components/Icon'
-import { NextLink } from 'components/NextLink'
 import { Text } from 'components/Text'
+import Router from 'next/router'
 import Image from 'next/image'
 
 const Footer = () => {
   const scrollTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }
+
+  const handleNavigation = (route: string) => () => {
+    Router.push(route)
+  }
+
   return (
     <Box bg="cyan.1000" color="white">
       <Box
@@ -53,52 +58,56 @@ const Footer = () => {
           >
             Useful Links
           </Text>
-          <NextLink href="/" className="hover-primary-color">
-            <Text fontSize={14} fontWeight="semi-bold" mb={8}>
-              Home
-            </Text>
-          </NextLink>
-          <NextLink href="/cart" className="hover-primary-color">
-            <Text fontSize={14} fontWeight="semi-bold" mb={8}>
-              Cart
-            </Text>
-          </NextLink>
-          <NextLink href="/products?gender=men" className="hover-primary-color">
-            <Text
-              fontSize={14}
-              fontWeight="semi-bold"
-              whiteSpace="nowrap"
-              mb={8}
-            >
-              Men's fashion
-            </Text>
-          </NextLink>
-          <NextLink
-            href="/products?gender=women"
-            className="hover-primary-color"
+          <Text
+            className="hover-primary-color pointer"
+            onClick={handleNavigation('/')}
+            fontSize={14}
+            fontWeight="semi-bold"
+            mb={8}
           >
-            <Text
-              fontSize={14}
-              fontWeight="semi-bold"
-              whiteSpace="nowrap"
-              mb={8}
-            >
-              Women's fashion
-            </Text>
-          </NextLink>
-          <NextLink
-            href="/products?category=toys"
-            className="hover-primary-color"
+            Home
+          </Text>
+          <Text
+            className="hover-primary-color pointer"
+            onClick={handleNavigation('/cart')}
+            fontSize={14}
+            fontWeight="semi-bold"
+            mb={8}
           >
-            <Text
-              fontSize={14}
-              fontWeight="semi-bold"
-              whiteSpace="nowrap"
-              mb={8}
-            >
-              Toys & games
-            </Text>
-          </NextLink>
+            Cart
+          </Text>
+          <Text
+            className="hover-primary-color pointer"
+            onClick={handleNavigation('/products?gender=men')}
+            fontSize={14}
+            fontWeight="semi-bold"
+            whiteSpace="nowrap"
+            mb={8}
+          >
+            Men's fashion
+          </Text>
+
+          <Text
+            className="hover-primary-color pointer"
+            onClick={handleNavigation('/products?gender=women')}
+            fontSize={14}
+            fontWeight="semi-bold"
+            whiteSpace="nowrap"
+            mb={8}
+          >
+            Women's fashion
+          </Text>
+
+          <Text
+            className="hover-primary-color pointer"
+            onClick={handleNavigation('/products?category=toys')}
+            fontSize={14}
+            fontWeight="semi-bold"
+            whiteSpace="nowrap"
+            mb={8}
+          >
+            Toys & games
+          </Text>
         </Box>
         <Box display="flex" flexDirection="column" alignItems="flex-start">
           <Text fontSize={18} fontWeight="semi-bold" mb={24}>

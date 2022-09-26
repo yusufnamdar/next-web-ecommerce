@@ -12,7 +12,7 @@ import Image from 'next/image'
 import { updateQuantity, removeItem, emptyCart } from 'store/slice'
 import { BorderAnimationStyled } from 'components/Cart/styled'
 import { Button } from 'components/Button'
-import { NextLink } from 'components/NextLink'
+import Router from 'next/router'
 
 type ArrangedItem = { seller: string; result: ICartItem[] }
 
@@ -20,7 +20,7 @@ const CartPage = () => {
   const items = useSelector(getCart)
   const dispatch = useDispatch()
 
-  //if the array is empty, it returns 0
+  //if the array is empty, it returns { totalQuantity: 0, totalPrice: 0 }
   const { totalQuantity, totalPrice } = useMemo(
     () =>
       items.reduce(
@@ -68,11 +68,10 @@ const CartPage = () => {
         <Text my={16} fontSize={24} fontWeight="semi-bold" color="gray.400">
           Your cart is empty
         </Text>
-        <NextLink href="/">
-          <Button width={202} height={44}>
-            Start shopping
-          </Button>
-        </NextLink>
+
+        <Button width={202} height={44} onClick={() => Router.push('/')}>
+          Start shopping
+        </Button>
       </Panel>
     )
   }
@@ -207,7 +206,6 @@ const CartPage = () => {
                       >
                         <Counter
                           count={quantity}
-                          max={10}
                           onChange={onCounterChange(sku.sku)}
                         />
                         <Text

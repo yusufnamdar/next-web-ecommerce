@@ -3,7 +3,6 @@ import { Text } from 'components/Text'
 import { FC, useEffect, useState } from 'react'
 import { optionTextMap } from 'utils/constants'
 import { Button } from 'components/Button'
-import { NextLink } from 'components/NextLink'
 import { Icon } from 'components/Icon'
 import { SlideBoxStyled } from '../Header/Toolbar/styled'
 import Router from 'next/router'
@@ -81,8 +80,8 @@ const Cart: FC<CartProps> = ({ items, totalQuantity }) => {
     setShowScrollDown(true)
   }
 
-  const navigateToCart = () => {
-    Router.push('/cart')
+  const handleNavigation = (route: string) => () => {
+    Router.push(route)
   }
 
   return (
@@ -110,63 +109,57 @@ const Cart: FC<CartProps> = ({ items, totalQuantity }) => {
         {items.map((item, index) => {
           const { _id, sku, optionType, title, image, quantity } = item
           return (
-            <NextLink key={sku.sku} href={`/product/${_id}`}>
+            <Box
+              key={sku.sku}
+              onClick={handleNavigation(`/product/${_id}`)}
+              className="no-user-select pointer"
+              display="flex"
+              p={16}
+              height={118}
+              borderBottomStyle={index !== items.length - 1 ? 'solid' : 'none'}
+              borderBottomWidth={1}
+              borderBottomColor="gray.200"
+            >
               <Box
-                className="no-user-select"
-                display="flex"
-                p={16}
-                height={118}
-                borderBottomStyle={
-                  index !== items.length - 1 ? 'solid' : 'none'
-                }
-                borderBottomWidth={1}
-                borderBottomColor="gray.200"
+                position="relative"
+                width={58}
+                minWidth={58}
+                height={84}
+                borderRadius="large"
+                overflow="hidden"
+                mr={15}
               >
-                <Box
-                  position="relative"
-                  width={58}
-                  minWidth={58}
-                  height={84}
-                  borderRadius="large"
-                  overflow="hidden"
-                  mr={15}
-                >
-                  <Image
-                    src={image}
-                    alt={title}
-                    placeholder="blur"
-                    blurDataURL="https://via.placeholder.com/5"
-                    layout="fill"
-                  />
-                </Box>
-                <Box>
-                  <Box maxHeight={40} mb={2}>
-                    <Text fontSize={14} lineHeight={1.5} multiLineTextOverflow>
-                      {title}
-                    </Text>
-                  </Box>
-                  <Text
-                    className="capitalize"
-                    fontSize={11}
-                    color="gray.400"
-                    mb={2}
-                  >
-                    {optionType &&
-                      `${optionType}: ${
-                        optionTextMap[sku[optionType] as OptionValueType]
-                      },`}{' '}
-                    Quantity: {quantity}
-                  </Text>
-                  <Text
-                    color="primary.400"
-                    fontWeight="semi-bold"
-                    fontSize={14}
-                  >
-                    $ {sku.price}
-                  </Text>
-                </Box>
+                <Image
+                  src={image}
+                  alt={title}
+                  placeholder="blur"
+                  blurDataURL="https://via.placeholder.com/5"
+                  layout="fill"
+                />
               </Box>
-            </NextLink>
+              <Box>
+                <Box maxHeight={40} mb={2}>
+                  <Text fontSize={14} lineHeight={1.5} multiLineTextOverflow>
+                    {title}
+                  </Text>
+                </Box>
+                <Text
+                  className="capitalize"
+                  fontSize={11}
+                  color="gray.400"
+                  mb={2}
+                >
+                  {optionType &&
+                    `${optionType}: ${
+                      optionTextMap[sku[optionType] as OptionValueType]
+                    },`}{' '}
+                  Quantity: {quantity}
+                </Text>
+                <Text color="primary.400" fontWeight="semi-bold" fontSize={14}>
+                  $ {sku.price}
+                </Text>
+              </Box>
+            </Box>
           )
         })}
       </Box>
@@ -190,7 +183,12 @@ const Cart: FC<CartProps> = ({ items, totalQuantity }) => {
         </SlideBoxStyled>
       </Box>
       <Box display="flex" justifyContent="space-between" px={16} py={10}>
-        <Button onClick={navigateToCart} width={130} height={35} fontSize={14}>
+        <Button
+          onClick={handleNavigation('/cart')}
+          width={130}
+          height={35}
+          fontSize={14}
+        >
           Go to cart
         </Button>
         <Button variant="outline" width={130} height={35} fontSize={14}>

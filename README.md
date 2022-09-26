@@ -23,7 +23,7 @@
 
 ![Tech Stack](https://skillicons.dev/icons?i=typescript,react,redux,nextjs,mongodb,styledcomponents)
 
----
+## 🔍 Preview
 
 <img src="GIF/preview.gif" />
 
