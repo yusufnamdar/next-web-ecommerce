@@ -29,10 +29,10 @@ export const UnaryOperatorStyled = styled.button<UnaryOperatorStyledProps>`
 
 export const InputStyled = styled.input<InputHTMLAttributes<HTMLInputElement>>`
   width: 42px;
+  height: 100%;
   padding: 0 10px;
   font-size: 14px;
   margin: 0 auto;
-  height: 100%;
   border: none;
   text-align: center;
   color: ${theme('colors.gray.400')};

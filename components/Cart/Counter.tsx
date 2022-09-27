@@ -9,7 +9,7 @@ interface CounterProps extends Omit<BoxProps, 'onChange'> {
   max?: number
   onChange?(num: number): void
 }
-//This component might need refactor about whether it is going to be optimistic or not
+//This component might need refactor for whether it is going to be optimistic or not
 export const Counter: FC<CounterProps> = ({
   count = 1,
   min = 1,

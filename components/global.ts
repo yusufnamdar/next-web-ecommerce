@@ -44,7 +44,7 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   #nprogress .bar{
-    background-color: ${theme('colors.primary.400')};
+    background-color: ${theme('colors.primary.500')};
   }
     
   #nprogress .peg {
