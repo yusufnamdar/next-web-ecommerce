@@ -80,6 +80,10 @@ export const GlobalStyle = createGlobalStyle`
     color:${theme('colors.gray.400')};
   }
 
+  .rose-500 {
+    color:${theme('colors.rose.500')};
+  }
+
   .capitalize {
     text-transform: capitalize;
   }

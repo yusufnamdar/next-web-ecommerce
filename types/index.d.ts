@@ -64,3 +64,12 @@ interface ICartItem {
   image: string
   optionType?: OptionType
 }
+
+interface IFavoriteItem {
+  _id: string
+  title: string
+  seller: string
+  sku: ISku
+  image: string
+  optionType?: OptionType
+}

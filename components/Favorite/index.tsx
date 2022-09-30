@@ -21,12 +21,17 @@ const Favorite: FC<FavoriteProps> = ({
   return (
     <FavoriteCircleStyled
       {...props}
+      role="button"
+      tabIndex={0}
       borderRadius={borderRadius}
-      onClick={onFavorite.bind(null, !isFavorite)}
+      onClick={(e) => {
+        e.stopPropagation()
+        onFavorite(!isFavorite)
+      }}
     >
       <Icon
         name={isFavorite ? 'favorite' : 'favorite_border'}
-        color={iconColor}
+        color={isFavorite ? iconColor : 'gray.400'}
         size={iconSize}
       />
     </FavoriteCircleStyled>

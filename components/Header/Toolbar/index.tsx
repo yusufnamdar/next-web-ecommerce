@@ -4,6 +4,7 @@ import { Text } from 'components/Text'
 import { Button } from 'components/Button'
 import { Hoverbox } from 'components/Hoverbox'
 import CartHoverbox from './CartHoverbox'
+import Router from 'next/router'
 
 const Toolbar = () => {
   return (
@@ -28,7 +29,10 @@ const Toolbar = () => {
           Login
         </Text>
       </Hoverbox>
-      <Hoverbox colorOnHover="#fb7185">
+      <Hoverbox
+        colorOnHover="#fb7185"
+        onClick={() => Router.push('/favorites')}
+      >
         <Icon name="favorite" color="white" />
         <Text ml={1} color="white" fontSize={13} fontWeight="semi-bold">
           Favorites

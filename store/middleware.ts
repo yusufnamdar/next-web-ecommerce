@@ -8,6 +8,8 @@ import {
   removeItem,
   setDynoAction,
   updateQuantity,
+  addToFavorites,
+  removeFavoriteItem,
 } from './slice'
 
 const localStorageMiddleware: Middleware<unknown, RootState> =
@@ -15,12 +17,24 @@ const localStorageMiddleware: Middleware<unknown, RootState> =
     next(action)
     if (
       hasActionMatch(
-        [addToCart, updateQuantity, decrementQuantity, removeItem, emptyCart],
+        [
+          addToCart,
+          updateQuantity,
+          decrementQuantity,
+          removeItem,
+          emptyCart,
+          addToFavorites,
+          removeFavoriteItem,
+        ],
         action
       )
     ) {
       const cart = store.getState().cart
-      localStorage.setItem('namstoreStorage', JSON.stringify({ cart }))
+      const favorites = store.getState().favorites
+      localStorage.setItem(
+        'namstoreStorage',
+        JSON.stringify({ cart, favorites })
+      )
     }
   }
 

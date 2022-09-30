@@ -61,7 +61,7 @@ export const Counter: FC<CounterProps> = ({
       <UnaryOperatorStyled
         className="no-user-select"
         onClick={onChange.bind(null, count - 1)}
-        disabled={count === min}
+        disabled={count <= min}
       >
         -
       </UnaryOperatorStyled>
@@ -85,7 +85,7 @@ export const Counter: FC<CounterProps> = ({
       <UnaryOperatorStyled
         className="no-user-select"
         onClick={onChange.bind(null, count + 1)}
-        disabled={!!max && count === max}
+        disabled={!!max && count >= max}
       >
         +
       </UnaryOperatorStyled>

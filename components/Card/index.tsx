@@ -5,10 +5,33 @@ import { CardContainerStyled } from './styled'
 import Image from 'next/image'
 import { StarRating } from 'components/StarRating'
 import { Favorite } from 'components/Favorite'
+import { useDispatch, useSelector } from 'react-redux'
+import { getFavorites } from 'store/selectors'
+import { addToFavorites, removeFavoriteItem } from 'store/slice'
 
-const Card: FC<IProduct> = ({ skus, images = [], title, reviews }) => {
-  const price = skus[0].price
+const Card: FC<IProduct> = ({
+  _id,
+  seller,
+  skus,
+  images = [],
+  title,
+  reviews,
+}) => {
+  const favorites = useSelector(getFavorites)
+  const dispatch = useDispatch()
+  const { price, sku } = skus[0]
   const { count, average } = reviews || {}
+
+  const hasFavorited = favorites.find((item) => item.sku.sku === sku)
+
+  const onFavorite = (isFavorite: boolean) => {
+    isFavorite
+      ? dispatch(
+          addToFavorites({ _id, seller, title, sku: skus[0], image: images[0] })
+        )
+      : dispatch(removeFavoriteItem({ sku }))
+  }
+
   return (
     <CardContainerStyled>
       <Box height={350} position="relative">
@@ -19,7 +42,14 @@ const Card: FC<IProduct> = ({ skus, images = [], title, reviews }) => {
           blurDataURL="https://via.placeholder.com/5"
           layout="fill"
         />
-        <Favorite position="absolute" top={5} right={5} />
+        <Favorite
+          isFavorite={!!hasFavorited}
+          onFavorite={onFavorite}
+          iconColor="rose.400"
+          position="absolute"
+          top={5}
+          right={5}
+        />
       </Box>
       <Box p={10}>
         <Box height={32} mb={5}>
