@@ -54,6 +54,7 @@ const ProductPage: NextPage<ProductPageProps> = ({ product }) => {
   const addItemToCart = () => {
     dispatch(
       addToCart({
+        _id,
         title,
         seller,
         sku,
