@@ -5,24 +5,24 @@ import { connect } from 'utils/mongodb'
 import { Panel } from 'components/Panel'
 import { Text } from 'components/Text'
 import { StarRating } from 'components/StarRating'
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 import { Icon } from 'components/Icon'
 import { Button } from 'components/Button'
 import { Favorite } from 'components/Favorite'
 import type { GetStaticPaths, GetStaticProps, NextPage } from 'next'
 import { optionTextMap, optionValueMap } from 'utils/constants'
 import { Row } from 'components/global'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import SkuOption from 'components/Product/SkuOption'
 import Gallery from 'components/Product/Gallery'
-import { addToCart } from 'store/slice'
+import { addToCart, addToFavorites, removeFavoriteItem } from 'store/slice'
+import { getFavorites } from 'store/selectors'
 
 interface ProductPageProps {
   product: IProduct
 }
 
 const ProductPage: NextPage<ProductPageProps> = ({ product }) => {
-  const dispatch = useDispatch()
   const {
     _id,
     reviews,
@@ -35,9 +35,16 @@ const ProductPage: NextPage<ProductPageProps> = ({ product }) => {
     options,
     description,
   } = product || {}
-  const { type = 'size', value } = options || {}
+  const favorites = useSelector(getFavorites)
   const [sku, setSku] = useState(skus[0])
+  const dispatch = useDispatch()
+
+  const { type = 'size', value } = options || {}
   const isSelectedOutOfStock = !sku.quantity
+
+  const hasFavorited = useMemo(() => {
+    return favorites.find((item) => item.sku.sku === skus[0].sku)
+  }, [favorites])
 
   const handleSkus = (value: OptionValueType) => {
     const sku = skus.find((sku) => sku[type] == value)
@@ -47,7 +54,6 @@ const ProductPage: NextPage<ProductPageProps> = ({ product }) => {
   const addItemToCart = () => {
     dispatch(
       addToCart({
-        _id,
         title,
         seller,
         sku,
@@ -55,6 +61,14 @@ const ProductPage: NextPage<ProductPageProps> = ({ product }) => {
         optionType: options?.type,
       })
     )
+  }
+
+  const onFavorite = (isFavorite: boolean) => {
+    isFavorite
+      ? dispatch(
+          addToFavorites({ _id, seller, title, sku: skus[0], image: images[0] })
+        )
+      : dispatch(removeFavoriteItem({ sku: skus[0].sku }))
   }
 
   return (
@@ -134,6 +148,9 @@ const ProductPage: NextPage<ProductPageProps> = ({ product }) => {
               {isSelectedOutOfStock ? 'Out of Stock' : 'Add to Cart'}
             </Button>
             <Favorite
+              isFavorite={!!hasFavorited}
+              onFavorite={onFavorite}
+              iconColor="rose.400"
               size={50}
               borderWidth={1}
               borderStyle="solid"
